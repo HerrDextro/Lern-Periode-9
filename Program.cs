@@ -2,6 +2,7 @@
 using System;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Xml;
 using Newtonsoft.Json;
 
@@ -43,18 +44,20 @@ namespace AbstractGame
 
         static void CreateGame() //needs constraints/exception handling
         {
-            string filePath = "C:\\Users\\Neo\\source\\repos\\ThrowAway\\ThrowAway\\resources.txt"; //make relative
-            string gameData = File.ReadAllText(filePath);
+            
+            //string gameData = File.ReadAllText(filePath);
 
             Console.Clear();
             Console.WriteLine("Game name \n");
             string gameName = Console.ReadLine();
             Console.WriteLine("Player name: \n");
-            string name = Console.ReadLine();
+            string playerName = Console.ReadLine();
             Console.WriteLine("Difficulty 1/2/3 (easy to hard) \n");
             int difficulty = Convert.ToInt32(Console.ReadLine());
 
-            Game newGame = new Game(gameName, name, difficulty);
+            
+
+            Game newGame = new Game(gameName, playerName, difficulty);
         }
 
         static void LoadGame(string gameName)

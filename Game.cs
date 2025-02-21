@@ -16,15 +16,21 @@ namespace AbstractGame
         public Player Player { get; private set; }
         public LifeNet LifeNet { get; private set; }
 
-        public Game(string gameNameInput, string playerName, int difficulty) //construct game, need params for world and NPC???? (prop yes)
+        public Game(string gameName, string playerName, int difficulty) //construct game, need params for world and NPC???? (prop yes)
         {
-            gameName = gameNameInput;
-            
             isRunnung = true;
 
             World = new World(difficulty);
             Player = new Player(playerName, difficulty);
             LifeNet = new LifeNet(difficulty);
+
+
+            string filePath = "C:\\Users\\Neo\\source\\repos\\ThrowAway\\ThrowAway\\gameData.txt"; //UNTESTED, and not yet any file creation
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine($"{gameName},{playerName},{difficulty}");
+            };
+
         }
 
     }

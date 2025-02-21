@@ -8,6 +8,12 @@ namespace AbstractGame
 {
     public class Player
     {
-        public Player(string playerName, int difficulty) { }
+        public string playerName;
+        public int difficulty;
+        public List<string> inventory;
+        public Player(string playerName, int difficulty) 
+        {
+        
+        }
     }
 }
