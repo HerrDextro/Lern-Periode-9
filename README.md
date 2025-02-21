@@ -9,6 +9,7 @@ Für dieses Modul wäre es gut, ein Projekt zu machen wo man viel mit der Strukt
 ## 14.02.2025: Explorativer Wegwerf-Prototyp
 - [x] Winforms Graphics box
 - [x] 60 FPS
+
 Heute habe ich mithifle von viel ChatGPT ein Picturebox in Winforms gemacht welche individuell Pixel updaten kann (farbe, X, Y) 
 
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
