@@ -10,16 +10,16 @@ Für dieses Modul wäre es gut, ein Projekt zu machen wo man viel mit der Strukt
 - [x] Winforms Graphics box
 - [x] 60 FPS
 
-Heute habe ich mithifle von viel ChatGPT ein Picturebox in Winforms gemacht welche individuell Pixel updaten kann (farbe, X, Y) 
+Heute habe ich mithifle von viel ChatGPT ein Picturebox in Winforms gemacht welche individuell Pixel updaten kann (farbe, X, Y). Der Code wurde komplett con KI gereinigt aber manchmal gibt es immer noch ein "object already in use" exception, es passiert aber nciht oft genug um es sinnvoll zu debuggen.
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 21.2: Explorativer Wegwerf-Prototyp
-- [ ] ... (dieses AP sollte offline, also ohne Laptop zu bearbeiten sein)
-- [ ] ...
-- [ ] ...
-- [ ] ...
-✍️ Heute habe ich... (50-100 Wörter)
+- [ ] Class/Data structure festlegen
+- [ ] Minimale Variablen festlegen
+- [ ] Main Menu
+- [ ] CreateGame (nur difficulty, name)
+
+
 
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
