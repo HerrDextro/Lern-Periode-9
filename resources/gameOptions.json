@@ -1,0 +1,44 @@
+﻿{
+	"Factions": {
+		"Factionless": {
+			"Description": "Freedom, anarchy, factionless isnt officially a faction but loners are generally classified as such",
+			"Playstyles": {
+				"Random": "Random loadout, may be OP may be bad, you want to make it fair and realistic.",
+				"Light": "You travel light, no 20KG backpacks and 500 rounds of ammo, you rely on skill, improvising and resource management to make it work.",
+				"Tourist": "You have everything you need for a comfortable trip around. You camp in safe places and travel in groups either way, and prefer to have a hot meal over an extra axe.",
+				"Heavy": "You saw the disaster coming long ago, after years of careful prepping you have assembled the ultimate kit to survive as long as possible, just try not to fall and injure yourself though."
+			}
+		},
+		"Bandit": {
+			"Description": "Total Scum, they take what they want, and give nothing back.",
+			"Playstyles": {
+				"Raider": "You rely on ambush tactics, hit and run, and fear to take what you need.",
+				"Bountyhunter": "Money is money, you cant be a softie in this economy!",
+				"Warlord": "You build your own little empire, recruiting others to work under you."
+			}
+		},
+		"Citizen": {
+			"Description": "Civilized, trying to rebuild and keep society together.",
+			"Playstyles": {
+				"Trader": "You rely on economy and bartering to get what you need.",
+				"Guard": "You protect settlements and enforce order."
+			}
+		},
+		"Griever": {
+			"Description": "They kill all they see, they have no mercy...",
+			"Playstyles": {
+				"Stalker": "You stay in the shadows, stalking your prey.",
+				"Brute": "You rely on sheer strength and fear to dominate.",
+				"Raider": "Travel in groups and plunder settlements"
+			}
+		},
+		"Elite": {
+			"Description": "Ex-Government operatives, trained, supplied, and still holding onto their mission.",
+			"Playstyles": {
+				"Operative": "You work alone, taking out high-value targets.",
+				"Mercernary":  "Your skills are apparently more valued by others than by the organisation",
+				"Commander": "You organize a squad and operate with precision."
+			}
+		}
+	}
+}
