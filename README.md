@@ -28,7 +28,8 @@ Heute habe ich auf Papier eine Programmarchitektur für ein Videospiel entwickel
 - [ ] SaveGame mit JSON savefile (JSON wirter)
 - [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 
-Heute habe ich die Wegwerfversion so umgebaut dass sie jetzt komplett mit dem Modell übereinstimmt (nicht mit wenigere Features so wie das Wegwerfmodell) und statt .txt ein JSON Datei wo die Beschreibungen stehen. Ich hatte probleme mit dem deserlializing davon, aber könnte es schlussendlich beheben und erfolgreich auslesen und darstellen. Die CreateGame Methode hat jetzt auch noch die zusätzliche Parameter, die ich nur auswählen könnte indem ich die Factions und Playstyles anzeige und dann eine Option zur Auswahl gebe. 
+Heute habe ich die Wegwerfversion so umgebaut dass sie jetzt komplett mit dem Modell übereinstimmt (nicht mit wenigere Features so wie das Wegwerfmodell) und statt .txt ein JSON Datei wo die Beschreibungen stehen. Ich hatte probleme mit dem deserlializing davon, aber könnte es schlussendlich beheben und erfolgreich auslesen und darstellen. Die CreateGame Methode hat jetzt auch noch die zusätzliche Parameter, die ich nur auswählen könnte indem ich die Factions und Playstyles anzeige und dann eine Option zur Auswahl gebe. Mit diese Features, die ich jetzt hinzugefügt habe wird es immer wichtiger mehr exception handling und Inputverarbeitung zu machen, da es oft eingaben gibt die case-sensitive sind (ZB Factions) und eingaben die nur 'int' akzeptieren, und keine verarbeitung haben für strings. Da es jetzt aber wichtiger ist zuerst die vollständige Kernfunktionalität zu haben mache ich das erst beim "polieren".
+
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 7.3: Kern-Funktionalität
