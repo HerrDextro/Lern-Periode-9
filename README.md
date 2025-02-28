@@ -26,7 +26,7 @@ Heute habe ich auf Papier eine Programmarchitektur für ein Videospiel entwickel
 - [x] Dateien für die vollständige Programmarchitektur hinzufügen
 - [x] JSON Datei für die Factions und Playstyles inklusive class dafür
 - [x] Display choices(and description) und CreateGame ausbauen mit Faction, playstyle und gamename
-- [ ] SaveGame mit JSON savefile (JSON writer)
+- [ ] SaveGame mit JSON savefile (JSON writer) (nicht gemacht weil umwechsel auf SQLite)
 Optional:
 
 
