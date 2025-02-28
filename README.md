@@ -22,14 +22,14 @@ Heute habe ich mithifle von viel ChatGPT ein Picturebox in Winforms gemacht welc
 
 Heute habe ich auf Papier eine Programmarchitektur für ein Videospiel entwickelt, aber es ist alles nur abtract also gibt es kein echter Game.Render oder so, es ist nur für der Struktur. Ich habe festgelegt, welche Variablen wo sind und wie sie hin und her fliessen, und wie ich sie am besten speicher/bearbeiten könnte. Dann habe ich ein sehr simples proof of Concept Wegwerfprogramm gemacht, welche nur ein 2 optionen hatte zum Game erstellen und nur 3 Sachen als gameData gespeichert hat. Die Struktur hat aber Sinn gemacht und ich habe die Architektur leicht ausgebreitet für das Prototy mit der Kern-Funktionalität. Da ich einfach vergesse zu committen habe ich Google tasks auf mein Handy heruntergeladen und ein recurrent Task eingestellt, welche mit daran erinnert.
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
-
 ## 28.2: Kern-Funktionalität
 - [x] JSON Datei für die Factions und Playstyles inklusive class dafür
-- [ ] Display und CreateGame ausbauen mit Faction, playstyle und gamename
+- [x] Display choices(and description) und CreateGame ausbauen mit Faction, playstyle und gamename
 - [ ] SaveGame mit JSON savefile (JSON wirter)
-- [ ] ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
+- [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 
+Heute habe ich die Wegwerfversion so umgebaut dass sie jetzt komplett mit dem Modell übereinstimmt (nicht mit wenigere Features so wie das Wegwerfmodell) und statt .txt ein JSON Datei wo die Beschreibungen stehen. Ich hatte probleme mit dem deserlializing davon, aber könnte es schlussendlich beheben und erfolgreich auslesen und darstellen. Die CreateGame Methode hat jetzt auch noch die zusätzliche Parameter, die ich nur auswählen könnte indem ich die Factions und Playstyles anzeige und dann eine Option zur Auswahl gebe. 
+☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 7.3: Kern-Funktionalität
 ## 14.3: Architektur ausbauen
