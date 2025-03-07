@@ -35,12 +35,16 @@ Heute habe ich die Wegwerfversion so umgebaut dass sie jetzt komplett mit dem Mo
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 7.3: Kern-Funktionalität
+- [ ] DBManager class mit InitalizeDB, DBInsert methoden.
+- [ ] SQLite gameSave Database erstellen
+- [x] SQLite gameSave zum Debuggen lesen (debug class und methode)
 - [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
-- [ ] CreateInventoryMethode
-- [ ] Generation von Locations in World.cs
-- [ ] Eine Lösung, das alles in der Console einigermasse vernünftig anzuzeigen.
+
+
 
 ## 14.3: Architektur ausbauen
+- [ ] Generation von Locations in World.cs
+- [ ] CreateInventoryMethode
 ## 21.3: Architektur ausbauen
 ## 28.3: Auspolieren
 ## 4.4: Auspolieren & Abschluss
