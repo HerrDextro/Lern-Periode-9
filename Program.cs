@@ -4,7 +4,9 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Xml;
 using Newtonsoft.Json;
-using AbstractGame.entities;
+using AbstractGame.debug;
+using System.Data.SQLite;
+using AbstractGame.systems;
 
 namespace AbstractGame
 {
@@ -38,7 +40,7 @@ namespace AbstractGame
             switch (choice)
             {
                 case 1:
-                    CreateGame();
+                    CreateNewGame();
                     break;
                 case 2:
                     LoadGame();
@@ -47,7 +49,10 @@ namespace AbstractGame
                     
                     break;
                 case 4: //for debug, just insert whatever path for JSON, will output everything in it.
-                    FactionLoader.TestJSON("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json");
+                    Debug.TestJSON("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json");
+                    Console.WriteLine("Choose tables to select * from: \n");
+                    string selectFrom = Console.ReadLine();
+                    Debug.SelectAll(selectFrom);  
                     break;
 
 
@@ -62,7 +67,7 @@ namespace AbstractGame
             
         }
 
-        static void CreateGame() //needs constraints/exception handling
+        static void CreateNewGame() //needs constraints/exception handling
         {
             try //chatGPT
             {
@@ -104,10 +109,26 @@ namespace AbstractGame
             {
                 Console.WriteLine("Invalid faction choice.");
             }
-            Console.WriteLine("Choose difficulty: \n easy-normal-realistic");
+            Console.WriteLine("Choose difficulty: \n -1=easy -2=normal-3=realistic");
             int diffChoice = Convert.ToInt32(Console.ReadLine());
-            Game newGame = new Game(gameName, name, factionChoice, psChoice, diffChoice); 
+            
+
+            DBManager.InitDB(); //initalize DB whenever in main creation menu, otherwise just load it.
+            var connection = new SQLiteConnection(DBManager.connectionString);
+            connection.Open();
+            DBManager.DBInsert(connection, "Player", new Dictionary<string, object>
+            {
+            { "Name", name },
+            { "Faction", factionChoice },
+            { "Playstyle", psChoice },
+            { "Difficulty", diffChoice }
+            });
+            Debug.SelectAll("Player");
+
+
+            //Game newGame = new Game(gameName, name, factionChoice, psChoice, diffChoice); 
         }
+       
 
         static void LoadGame()
         {

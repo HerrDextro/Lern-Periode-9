@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AbstractGame.entities
+namespace AbstractGame
 {
     public class Faction
     {
@@ -20,42 +20,8 @@ namespace AbstractGame.entities
     {
         public static FactionData LoadFactions(string filePath)
         {
-            string json = File.ReadAllText(filePath);
+              string json = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<FactionData>(json);
         }
-
-
-        //for debuggging
-        public static void TestJSON(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Error: JSON file not found.");
-                return;
-            }
-
-            string json = File.ReadAllText(filePath);
-            FactionData factions = JsonSerializer.Deserialize<FactionData>(json);
-
-            if (factions == null || factions.Factions == null)
-            {
-                Console.WriteLine("Error: Failed to deserialize JSON.");
-                return;
-            }
-
-            Console.WriteLine("=== Faction Data ===");
-            foreach (var faction in factions.Factions)
-            {
-                Console.WriteLine($"\nFaction: {faction.Key}");
-                Console.WriteLine($"Description: {faction.Value.description}");
-
-                Console.WriteLine("Playstyles:");
-                foreach (var playstyle in faction.Value.Playstyles)
-                {
-                    Console.WriteLine($"  - {playstyle.Key}: {playstyle.Value}");
-                }
-            }
-        }
-        
     }
 }
