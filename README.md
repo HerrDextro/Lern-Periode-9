@@ -32,19 +32,28 @@ Optional:
 
 Heute habe ich die Wegwerfversion so umgebaut dass sie jetzt komplett mit dem Modell übereinstimmt (nicht mit wenigere Features so wie das Wegwerfmodell) und statt .txt ein JSON Datei wo die Beschreibungen stehen. Ich hatte probleme mit dem deserlializing davon, aber könnte es schlussendlich beheben und erfolgreich auslesen und darstellen. Die CreateGame Methode hat jetzt auch noch die zusätzliche Parameter, die ich nur auswählen könnte indem ich die Factions und Playstyles anzeige und dann eine Option zur Auswahl gebe. Mit diese Features, die ich jetzt hinzugefügt habe wird es immer wichtiger mehr exception handling und Inputverarbeitung zu machen, da es oft eingaben gibt die case-sensitive sind (ZB Factions) und eingaben die nur 'int' akzeptieren, und keine verarbeitung haben für strings. Da es jetzt aber wichtiger ist zuerst die vollständige Kernfunktionalität zu haben mache ich das erst beim "polieren".
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 7.3: Kern-Funktionalität
-- [ ] DBManager class mit InitalizeDB, DBInsert methoden.
-- [ ] SQLite gameSave Database erstellen
+- [x] DBManager class mit InitalizeDB, DBInsert methoden.
+- [x] SQLite gameSave Database erstellen
 - [x] SQLite gameSave zum Debuggen lesen (debug class und methode)
 - [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 
+Heute habe ich SQLite in mein programm implementiert. Ich begann damit, unter der "systems" folder ein neues DBManager file und class. Da drinnen habe ich ein InitDB und eine DBInsert methode gemacht. Das InitDB erstellt und initialisiert eine neue Datenbank für das Spiel. Ich bin noch nicht genau sicher (darum muss ich das nächste Mal wieder ein Modell machen und ein bisschen nachdenken) ob ich statische Sachen wie Items usw in eine statische separate Database mache und dann game spezifische Datenbanken erstelle oder einfach eine statische und eine dynamische Datenbank(und wir dann einfach mit ein GameID schaffen und alles zusammen in der dynamische setzen) Das DBInsert fügt Daten in die Datenbank ein, es nimmt als Parameter eine Tabellenname und dann ein Dictionary mit Keys und Values. Ich weiss noch nicht ob ich das ändern sollte für grössere Inserts.
+Danach habe ich auch ein debug folder erstellt mit der Klasse "Debug" drinnen. Dort ist die "SelectAll" Methode und auch noch das "TestJSON", welches vorher im Factionloader war. Ich habe mich entschieden das so zu machen da es zu oft sehr komische Probleme mit der Datenbank hatte und ich in der zukunft auch mehr JSON files hinzufügen wird welche viel grösser sind, und dann viel einfach corrupted werden.
 
+☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 14.3: Architektur ausbauen
-- [ ] Generation von Locations in World.cs
+- [ ] Hinzufügen in InitDB: Erstellung Tabellen "World", "NPC"
+- [ ] Datenmodell für DB (UML und future proof)
+- [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 - [ ] CreateInventoryMethode
+
+      
+
+
 ## 21.3: Architektur ausbauen
+- [ ] Generation von Locations in World.cs
 ## 28.3: Auspolieren
 ## 4.4: Auspolieren & Abschluss
