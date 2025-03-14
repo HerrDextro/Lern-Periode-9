@@ -49,10 +49,7 @@ namespace AbstractGame
                     
                     break;
                 case 4: //for debug, just insert whatever path for JSON, will output everything in it.
-                    Debug.TestJSON("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json");
-                    Console.WriteLine("Choose tables to select * from: \n");
-                    string selectFrom = Console.ReadLine();
-                    Debug.SelectAll(selectFrom);  
+                    Debug.Query();
                     break;
 
 
@@ -67,7 +64,7 @@ namespace AbstractGame
             
         }
 
-        static void CreateNewGame() //needs constraints/exception handling
+        static void CreateNewGame() //needs constraints/exception handling, also maybe try make this cleaner.
         {
             try //chatGPT
             {
@@ -93,7 +90,7 @@ namespace AbstractGame
                 Console.WriteLine($"- {faction}");
             }
             string factionChoice = Console.ReadLine();
-            string psChoice = "random"; //random per default to avoi
+            string psChoice = "Random"; //"Random" per default to avoid "use of unassigned var"
 
             if (factions.Factions.TryGetValue(factionChoice, out Faction selectedFaction))
             {
@@ -111,8 +108,10 @@ namespace AbstractGame
             }
             Console.WriteLine("Choose difficulty: \n -1=easy -2=normal-3=realistic");
             int diffChoice = Convert.ToInt32(Console.ReadLine());
-            
 
+            DBManager.SetGameDatabase(gameName);
+            DBManager.CreateDB(gameName);
+           
             DBManager.InitDB(); //initalize DB whenever in main creation menu, otherwise just load it.
             var connection = new SQLiteConnection(DBManager.connectionString);
             connection.Open();
