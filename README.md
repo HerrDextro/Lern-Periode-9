@@ -57,6 +57,7 @@ Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neu
 
 Ich habe noch ein Bild von das neue DB system und auch eines des Datenmodell eingefügt damit ich sie später hier anschauen kann.
 <img src="https://github.com/user-attachments/assets/44a6f29c-bcc4-48df-88da-b8ba154ade2e" width="480">
+NOTE: Sachen wie "ammo types werden nicht sofort in der DB gespeichert sobald sie in-game gewechselt werden (ZB: Shotgun allowed ammo types: buckshot, slug, dragons breath, in game wird shotgun von buckshot zu slug gewechselt) aber sie werden im in-memory gamestate verwaltet und nur gespeichert OnGameSave
 
 
 
