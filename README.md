@@ -51,6 +51,8 @@ Auch noch: Ich habe meine AP's für heute ein bisschen verändert. Der Grund daf
 - [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 - [ ] CreateInventoryMethode
 
+Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neue Datenbank erstellt beim CreateGame statt einfach neue Tabellen (führt zu Konflikte) und ich habe ein Datenmodell erstellt, weil ich sonst relativ schnell verwirrt werde. Auch habe ich ein basic Itemlist erstellt mit alle Items die benötigt sind für die CreateInventory-Methode
+
       
 
 
