@@ -47,22 +47,26 @@ Auch noch: Ich habe meine AP's für heute ein bisschen verändert. Der Grund daf
 
 ## 14.3: Architektur ausbauen
 - [x] InitDB splitten in InitDB, CreateDB, und richtige DB verwenden (nach GameName)
-- [ ] Hinzufügen in InitDB: Erstellung Tabellen "World", "NPC"
-- [ ] Datenmodell für DB (UML und future proof)
-- [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
+- [x] Hinzufügen in InitDB: Erstellung Tabellen "World", "NPC"
+- [x] Datenmodell für DB (UML und future proof)
+- [x] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
 - [ ] CreateInventoryMethode
 
-Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neue Datenbank erstellt beim CreateGame statt einfach neue Tabellen (führt zu Konflikte, da table "Player schon existiert)) und ich habe ein Datenmodell erstellt, weil ich sonst relativ schnell verwirrt werde. Auch habe ich ein basic Itemlist erstellt mit alle Items die benötigt sind für die CreateInventory-Methode.
-
+Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neue Datenbank erstellt beim CreateGame statt einfach neue Tabellen (führt zu Konflikte, da table "Player schon existiert)) und ich habe ein Datenmodell erstellt, weil ich sonst relativ schnell verwirrt werde. Auch habe ich ein basic Itemlist erstellt mit alle Items die benötigt sind für die CreateInventory-Methode, es sind so viele weil ich Variation brauche, um verschiedene Items zu haben für verschiedene Playstyles (zb ein Bandit Raider bekommt schlechte Sachen und ein Elite Commander das beste was es gibt.) Ich habe heute festgelegt, wie die DB jetzt strukturiert werden sollte um Tabellen so spezialisiert möglich zu machen damit ich die Items reinmachen kann. (Die Items brauchen noch parameter, ich muss die noch irgendwie erstellen.) Ich habe die CreateInventory nicht gemacht da ich mit dem Erstellen des DB mit der richtige Struktur nicht fertig bin(das nicht committed, da es komplett broken ist), es hat ziemlich lange gedauert das alles auszudenken.
 
 Ich habe noch ein Bild von das neue DB system und auch eines des Datenmodell eingefügt damit ich sie später hier anschauen kann.
 <img src="https://github.com/user-attachments/assets/44a6f29c-bcc4-48df-88da-b8ba154ade2e" width="480">
 <img src="Screenshot 2025-03-14 114955.png" width="480">
-NOTE: Sachen wie "ammo types werden nicht sofort in der DB gespeichert sobald sie in-game gewechselt werden (ZB: Shotgun allowed ammo types: buckshot, slug, dragons breath, in game wird shotgun von buckshot zu slug gewechselt) aber sie werden im in-memory gamestate verwaltet und nur gespeichert OnGameSave
+NOTE: Sachen wie "ammo types werden nicht sofort in der DB gespeichert sobald sie in-game gewechselt werden (ZB: Shotgun allowed ammo types: buckshot, slug, dragons breath, in game wird shotgun von buckshot zu slug gewechselt) aber sie werden im in-memory gamestate verwaltet und nur gespeichert OnGameSave.
+AUCH NOTE: ich möchte gerne (bitte) 3 AP's machen statt 4, aber dafür wird ich sie viel besser ausformulieren, und sie werden die ganze ILA Stunden dauern.
 
 
 
 ## 21.3: Architektur ausbauen
+- [ ] Statische DB mit Itemlist
+- [ ] Tables Hinzufügen in DB, InitDB Methode ausbreiten um mehrere Tabellen zu erstellen
+- [ ] CreateInventoryMethode
 - [ ] Generation von Locations in World.cs
+
 ## 28.3: Auspolieren
 ## 4.4: Auspolieren & Abschluss
