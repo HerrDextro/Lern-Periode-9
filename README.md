@@ -46,6 +46,7 @@ Auch noch: Ich habe meine AP's für heute ein bisschen verändert. Der Grund daf
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 14.3: Architektur ausbauen
+- [x] InitDB splitten in InitDB, CreateDB, und richtige DB verwenden (nach GameName)
 - [ ] Hinzufügen in InitDB: Erstellung Tabellen "World", "NPC"
 - [ ] Datenmodell für DB (UML und future proof)
 - [ ] (Kleiner) ItemList (warscheinlich in JSON) mit starter items, items class und Function welche starter items bestimmt (Item.cs, CreateInventory)
@@ -56,8 +57,7 @@ Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neu
 
 Ich habe noch ein Bild von das neue DB system und auch eines des Datenmodell eingefügt damit ich sie später hier anschauen kann.
 
-
-      
+ThinkAG.jpg
 
 
 ## 21.3: Architektur ausbauen
