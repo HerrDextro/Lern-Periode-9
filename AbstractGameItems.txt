@@ -137,7 +137,7 @@ Personal equipment/gear:
 >Clothing:
 >Webbing:
 >Carrying:
->Specific gear: (Skiboots, skis, Dogsuits?)
+>Specific gear: (Skiboots, skis, Dog training suits?)
 >Protective gear:
 --MC-1 Gas Mask
 --GP-5 gas mask
