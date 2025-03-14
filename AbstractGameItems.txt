@@ -1,0 +1,237 @@
+AbstractGameItems
+
+Consumables:
+>Hydration:
+--Water bottle
+--Canteen
+--CamelBaK
+--Beards tea
+--Rivella 
+>Nutrition:
+--Bread loaf
+--Can of beans
+--Can of chilli
+--Tomato soup can
+--Can of soup
+--Can of peach
+--Corned Beef
+--Stew
+--Stöcki mash
+--Fillipino Rice bowl
+--Döner Kebap 
+--Pasta
+--MRE russian
+--MRE swiss
+--Pemmican
+--Fruit cake (op bible item)
+--Porridge bowl
+--Peanuts
+--Almonds
+>Boosters:
+--Coffee
+--Energy drink
+--Ricola
+--Vodka 
+--Coke can
+--Milka bar
+>Medical:
+--Bandage
+--Tourniquet
+--Congealer
+--Brace
+--Morphine
+--Fortivax (immune Booster)
+--Amphetamine
+--Steroids
+
+
+Tools: (what would be sensible subcategories here?)
+>Building/Crafting/Repairing: 
+--Hammer
+--Bowsaw
+--Foldable saw
+--Collapsible tube saw
+--Splitting Axe
+--Axe
+--Hatchet
+--Pickaxe
+--Sapper Spade
+--Foldable Sapper Spade
+--Shovel
+--Nails
+--Swiss army knife
+--Duct tape
+--String
+--Thread
+--Needle
+--Cloth
+--Button
+--Glue
+--Superglue
+--Cotton wrap
+--Rope
+--Snare wire
+--Fishing line
+>Shelter/Survival/Care:
+--Tent
+--Tarp
+--Sleeping bag
+--Cotton covers
+--Lighter
+--Ferro rod
+--Firestarter
+--Swiss army stove
+--Can stove
+--collapsible burner
+--Gas stove
+--Propane bottle
+--Gel bottle
+--Mess kit
+--Cutlery
+--Grooming kit
+--Soap bar
+--Toilet paper 
+>Navigation/Communication/Information:
+--Map
+--Compass
+--Protractor
+--Pencil
+--Rubber
+--Pen
+--GPS device
+--RF receiver
+--Radio kit
+--Antenna
+--Walkie Talkie
+--Whistle
+--Flare gun
+--Notebook
+
+
+>Vision/Signalling:
+--Field Binoculars
+--Monocular
+--Mirror
+--Flashlight
+--IR Flashlight
+--Swiss army flashlight
+--Electric lantern
+--Battery (universal for all items)
+--Dietz Oil lamp
+--Feuerhand oil lamp
+--Lamp oil
+--Swiss army white gas lantern
+--Chemstick red
+--CHemstick green
+--Chemstick blue
+--Chemstick IR
+--NS-71
+--PNR-1am
+--PNV-57em
+--1PN63
+--BN-1
+--T3C
+--Cyclops
+
+Personal equipment/gear:
+>Clothing:
+>Webbing:
+>Carrying:
+>Specific gear: (Skiboots, skis, Dogsuits?)
+>Protective gear:
+--MC-1 Gas Mask
+--GP-5 gas mask
+--S10 Gas mask
+--MS-4 filter
+--NBC-77 filter
+
+
+Weapons:
+>Melee:
+--Hunter's knife
+--USMC knife
+--Dagger
+--Bayonet
+--Machete
+--Kukri
+--Bat
+--Club
+>Pistol:
+--M1911
+--Glock 17
+--SIG P226
+--Beretta M9
+--Tokarev TT-33
+>SMG:
+--MP5
+--MP5k
+--Uzi
+--PPSh-41
+--MAC-10
+--P90
+>Rifle:
+--AK-47
+--AK-74
+--M4A1
+--FN FAL
+--HK G3
+--SKS
+--VSS Vintorez
+--VSS-M
+--AS VAL
+--SCAR-H
+--SCAR-L
+--Steyr AUG
+--Swiss Stgw57
+--Swiss Stgw90
+--SIG 553
+>Machine gun:
+--DShK
+--MG34
+--MG42
+--DP-27/DP-28
+--ZB vz.26
+--UK vz. 59
+--AA-52
+--RPD
+--RPK
+--M249
+>Sniper:
+--Remington 700
+--Dragunov SVD
+--M24
+--Barrett M82
+--L96
+--Mosin Nagant
+--Kar98k
+--Karabiner 11
+--Karabiner 31
+--Tavor X95 DMR
+>Shotgun:
+--Saiga-12
+--TOZ-106
+--Remington 870
+--Mossberg 500
+--KS-23
+>Launcher:
+--RPG-7
+--M72 LAW
+--Panzerfaust 3
+--M203 Grenade Launcher
+--Carl Gustaf M3
+>Ordnance:
+--RGD-5 grenade
+--M67 grenade
+--F1 grenade
+--Molotov cocktail
+--C4 explosive
+--Claymore mine
+--TM-62 Anti-Tank Mine
+--Pipe bomb
+--Dynamite
+>Other:
+--Crossbow
+--Bow
+
+
+
