@@ -56,8 +56,8 @@ Heute habe ich zuerst das InitDB repariert indem es jetzt auch wirklich eine neu
 
 
 Ich habe noch ein Bild von das neue DB system und auch eines des Datenmodell eingefügt damit ich sie später hier anschauen kann.
+![ThinkAG](https://github.com/user-attachments/assets/44a6f29c-bcc4-48df-88da-b8ba154ade2e)
 
-ThinkAG.jpg
 
 
 ## 21.3: Architektur ausbauen
