@@ -72,5 +72,7 @@ Heute habe ich das Datenmodell komplett verändert, da es vorher eigentlich kein
 
 <img src="Screenshot 2025-03-21 100934.png" width="480">
 
+Es muss schon darauf geachtet werden dass MS SQl und SQLite nicht genau gleich sind und deswegen das Datenmodell nicht 100% passen wird, und das Test DB welches im MS SQL erstellt wurde also auch keine exakte kopie ist. Sobald es komplett richtig funktioniert im SQL Server wird ich es umschreiben für SQLite (double > real etc)
+
 ## 28.3: Auspolieren
 ## 4.4: Auspolieren & Abschluss
