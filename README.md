@@ -63,7 +63,7 @@ AUCH NOTE: ich möchte gerne (bitte) 3 AP's machen statt 4, aber dafür wird ich
 
 
 ## 21.3: Architektur ausbauen
-- [ ] Statische DB mit Itemlist
+- [x] Statische DB mit Itemlist
 - [ ] Tables Hinzufügen in DB, InitDB Methode ausbreiten um mehrere Tabellen zu erstellen
 - [ ] CreateInventoryMethode
 - [ ] Generation von Locations in World.cs
