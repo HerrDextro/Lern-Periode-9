@@ -70,7 +70,7 @@ AUCH NOTE: ich möchte gerne (bitte) 3 AP's machen statt 4, aber dafür wird ich
 
 Heute habe ich das Datenmodell komplett verändert, da es vorher eigentlich kein Sinn gemacht hat und jetzt ist es so ausgedacht, dass es völlig strukturiert, normalisiert und future proof ist. Es werden warscheinlich doch ein Paar Änderungen kommen, aber nicht sehr grosse. Ich habe entschieden es so zu machen, dass alle Items welche im World existieren in ihre entsprechende Items Tabelle sind (es gibt mehrere damit die Item attribute einigermasse gleich sind für alle Items, und es so nicht viele NULL cells gibt) und nur die Parameter besitzen, welche im Spiel verändert werden können.
 
-<img src="Screenshot 2025-03-21 095038.png" width="480">
+<img src="Screenshot 2025-03-21 100934.png" width="480">
 
 ## 28.3: Auspolieren
 ## 4.4: Auspolieren & Abschluss
