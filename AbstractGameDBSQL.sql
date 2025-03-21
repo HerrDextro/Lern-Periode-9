@@ -48,8 +48,6 @@ CREATE TABLE stat_wpn_ordnance (
     duration INT,
     weight FLOAT
 );
---ALTER TABLE stat_wpn_ordnance ALTER COLUMN wpnLeRange FLOAT NOT NULL;
-
 
 -- Dynamic weapon instances (generated from static templates)
 CREATE TABLE wpn_melee (
@@ -185,3 +183,30 @@ INSERT INTO stat_wpn_ordnance (wpnName, wpnRange, wpnLeRange, duration, weight) 
 ('C4 explosive', 0, 20, 30, 1.0), -- Powerful explosive, heavy weight
 ('PFM-1 Mine', 0, 2.0, 300, 0.075 ), --anti personnel wounding mine
 ('VS-50', 0, 3, 0,  0.185);
+
+
+--alters & inserts
+ALTER TABLE stat_wpn_ordnance ALTER COLUMN wpnLeRange FLOAT NOT NULL;
+ALTER TABLE x ADD quality INT NOT NULL; --quality: 1(bad, available), 2(cheap, minimal), 3(decent, affordable), 4(good, expensive), 5(rare, powerful);
+
+ALTER TABLE stat_wpn_ordnance ADD quality INT; -- make not null after altering (ofc not possible to do instantly
+
+--ALTER TABLE [column_name] ADD CONSTRAINT [column_name_constraintName] CHECK [column_name_constraintName] IN('this', 'this', 'or this'));
+
+INSERT INTO stat_wpn_melee (quality) 
+VALUES (3),(4),(5),(2); --ofc this doesnt work bruh
+
+UPDATE stat_wpn_ordnance --first time using CASE in SQL 
+SET quality = CASE 
+    WHEN wpnName = 'RDG-5' THEN 3
+    WHEN wpnName = 'M67' THEN 4
+    WHEN wpnName = 'Molotov' THEN 2
+    WHEN wpnName = 'C4 explosive' THEN 5
+	WHEN wpnName = 'PFM-1 Mine' THEN 3
+	WHEN wpnName = 'VS-50' THEN 5
+	WHEN wpnName = 'Saiga 12' THEN 4
+END;
+
+
+DELETE FROM stat_wpn_melee WHERE weight IS NULL;
+SELECT * FROM stat_wpn_melee; 
