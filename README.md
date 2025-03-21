@@ -64,7 +64,7 @@ AUCH NOTE: ich möchte gerne (bitte) 3 AP's machen statt 4, aber dafür wird ich
 
 ## 21.3: Architektur ausbauen
 - [x] Statische DB mit Itemlist
-- [ ] Tables Hinzufügen in DB, InitDB Methode ausbreiten um mehrere Tabellen zu erstellen
+- [x] Tables Hinzufügen in DB, InitDB Methode ausbreiten um mehrere Tabellen zu erstellen
 - [ ] CreateInventoryMethode
 - [ ] Generation von Locations in World.cs
 
@@ -77,4 +77,9 @@ ADD LATER: knife damage coeff thoughts, createinv method based on playtstyle
 Es muss schon darauf geachtet werden dass MS SQl und SQLite nicht genau gleich sind und deswegen das Datenmodell nicht 100% passen wird, und das Test DB welches im MS SQL erstellt wurde also auch keine exakte kopie ist. Sobald es komplett richtig funktioniert im SQL Server wird ich es umschreiben für SQLite (double > real etc)
 
 ## 28.3: Auspolieren
+- [ ] Inputverarbeitung bei "Console.ReadLine();" mit exception handling und die möglichkeit, nochmals ein Input zu geben
+- [ ] [dbName].db erstellen funktioniert immer, geht aber manchmal nicht im resources Folder (obwohl es so angegeben wird von SQLite??) sondern im bin > debug > net8.0
+- [ ] Console.Clear(); damit nicht die alte Outputs/inputs immer sichtbar sind
+
+
 ## 4.4: Auspolieren & Abschluss
