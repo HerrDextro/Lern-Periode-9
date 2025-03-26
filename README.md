@@ -76,6 +76,10 @@ ADD LATER: knife damage coeff thoughts, createinv method based on playtstyle
 
 Es muss schon darauf geachtet werden dass MS SQl und SQLite nicht genau gleich sind und deswegen das Datenmodell nicht 100% passen wird, und das Test DB welches im MS SQL erstellt wurde also auch keine exakte kopie ist. Sobald es komplett richtig funktioniert im SQL Server wird ich es umschreiben für SQLite (double > real etc)
 
+## 26.3:
+
+Heute schreibe ich ein kleiner Beitrag: Ich hatte sehr viele Probleme mit der SQLite implementation, obwohl es am Anfang alles super funktioniert hatte habe ich es ziemlich schnell alles gebrochen. Es hat mir einige Zeit gedauert es zu fixen, da ich mir kein ChatGPT erlaubt habe. Das ist weil ich wirklich verstehen muss wie jedes einzelnes Ding für SQLite funktioniert. Es funktioniert jetzt (und jetzt noch) alles wieder super, aber ich kann ganz ehrlich nicht sagen, dass ich mit dem Block "Architektur" fertig bin. Deswegen mache ich heute und morgen nochmals ein paar extra Architekturblöcke, wo ich die basisfunktion überall schaffe, und die CreateInventory und das Location-generation alles einfach funktioniert, obwohl es einpach nur wenige testItems/testLocations sein werden...
+
 ## 28.3: Auspolieren
 - [ ] Inputverarbeitung bei "Console.ReadLine();" mit exception handling und die möglichkeit, nochmals ein Input zu geben
 - [ ] [dbName].db erstellen funktioniert immer, geht aber manchmal nicht im resources Folder (obwohl es so angegeben wird von SQLite??) sondern im bin > debug > net8.0
