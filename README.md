@@ -85,5 +85,12 @@ Heute schreibe ich ein kleiner Beitrag: Ich hatte sehr viele Probleme mit der SQ
 - [ ] [dbName].db erstellen funktioniert immer, geht aber manchmal nicht im resources Folder (obwohl es so angegeben wird von SQLite??) sondern im bin > debug > net8.0
 - [ ] Console.Clear(); damit nicht die alte Outputs/inputs immer sichtbar sind
 
+Heute habe ich:
+- InvConfig.json erstellt (noch nicht in CreateInventory angewendet
+- Classes für das neue JSON
+- In Faction.cs ein modulärer JSON Deserializer gemacht um der "Proprietäre" von GameOptions.json zu ersetzen, es verwendet als return type ein dynamisches (generic <T>) um mehrere json files zu ünterstützen.
+- Die DB inserts fertig fur CreateInventory
+
+
 
 ## 4.4: Auspolieren & Abschluss
