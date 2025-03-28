@@ -91,6 +91,7 @@ Heute habe ich:
 - In Faction.cs ein modulärer JSON Deserializer gemacht um der "Proprietäre" von GameOptions.json zu ersetzen, es verwendet als return type ein dynamisches (generic <T>) um mehrere json files zu ünterstützen.
 - Die DB inserts fertig fur CreateInventory
 
+NOTE: Ich bin in Debug.cs und faction.cs dran, die JSONDeserializers funktionierend zu kriegen und muss die richtige class und type struktur herausfinden
 
 
 ## 4.4: Auspolieren & Abschluss
