@@ -1,0 +1,99 @@
+﻿{
+  "Factions": {
+    "Factionless": {
+      "Random": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 1
+      },
+      "Light": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ]
+      },
+      "Tourist": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 3
+      },
+      "Heavy": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 4
+      }
+    },
+    "Bandit": {
+      "Raider": {
+        "AllowedQualities": [ 1, 2, 3 ],
+        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 2
+      },
+      "BountyHunter": {
+        "AllowedQualities": [ 1, 2, 3, 4 ],
+        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 2
+      },
+      "Warlord": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 2
+      }
+    },
+    "Citizen": {
+      "Trader": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 1
+      },
+      "Guard": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 1
+      },
+      "Scout": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 4
+      }
+    },
+    "Griever": {
+      "Stalker": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 1
+      },
+      "Brute": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 3
+      },
+      "Raider": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 1
+      }
+    },
+    "Elite": {
+      "Operative": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
+        "ArmorLevel": 5
+      },
+      "Mercenary": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 5
+      },
+      "Commander": {
+        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
+        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
+        "ArmorLevel": 5
+      }
+    }
+  },
+  "DifficultyModifiers": {
+    "Easy": 0.2,
+    "Normal": 0.0,
+    "Hard": -0.2,
+    "Nightmare": -0.5
+  }
+}

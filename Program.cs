@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using AbstractGame.debug;
 using System.Data.SQLite;
 using AbstractGame.systems;
+using System.Xml.Linq;
 
 namespace AbstractGame
 {
@@ -17,7 +18,7 @@ namespace AbstractGame
         public AbstractGame() 
         {
             //Faction faction = new Faction();
-            factions = FactionLoader.LoadFactions("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json");
+            factions = JSONLoader.LoadFactions("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json");
             //factions = FactionLoader.LoadFactions("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json") ?? new FactionData();
             
         }
@@ -48,7 +49,7 @@ namespace AbstractGame
                 case 3:
                     
                     break;
-                case 4: //for debug, just insert whatever path for JSON, will output everything in it.
+                case 4:
                     Debug.Query();
                     break;
 
@@ -64,11 +65,11 @@ namespace AbstractGame
             
         }
 
-        static void CreateNewGame() //needs constraints/exception handling, also maybe try make this cleaner.
+        public static void CreateNewGame() //needs constraints/exception handling, also maybe try make this cleaner.
         {
             try //chatGPT
             {
-                factions = FactionLoader.LoadFactions("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json") ?? new FactionData();
+                factions = JSONLoader.LoadFactions("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\gameOptions.json") ?? new FactionData();
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace AbstractGame
             }
 
             //Console.Clear(); //removed for bedug purposes
-            Console.WriteLine("game name");
+            Console.WriteLine("Game name");
             string gameName = Console.ReadLine();
             Console.WriteLine("Player name");
             string name = Console.ReadLine();
@@ -109,7 +110,9 @@ namespace AbstractGame
             Console.WriteLine("Choose difficulty: \n -1=easy -2=normal-3=realistic");
             int diffChoice = Convert.ToInt32(Console.ReadLine());
 
-            DBManager.SetGameDatabase(gameName);
+            Console.Clear();
+
+            DBManager.SetDatabasePath(gameName);
             DBManager.CreateDB(gameName);
            
             DBManager.InitDB(); //initalize DB whenever in main creation menu, otherwise just load it.
@@ -131,7 +134,11 @@ namespace AbstractGame
 
         static void LoadGame()
         {
-            //ka
+            //merely showing the only table rn
+            Console.WriteLine("enter Game to load");
+            string loadGame = Console.ReadLine();
+            DBManager.SetDatabasePath(loadGame);
+            Debug.SelectAll("Player");
         }
     }
 }

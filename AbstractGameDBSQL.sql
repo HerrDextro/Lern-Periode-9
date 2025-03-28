@@ -4,50 +4,102 @@
 USE AbstractGame;
 
 --StatIt_[category] signifies its a reference only table and should not be modified, tables with only [category]_[subcategory] or just [name] are dynamic.
+--GENERAL STRUCTURE OF CREATE TABLES: First stat wpn then stat item then stat food, then same order dynams
 
-BEGIN TRANSACTION;
--- Static weapon tables (unchanging data)
+
+-- Static tables (unchanging data)
+--weapons
 CREATE TABLE stat_wpn_melee (
     wpn_melee_id INT IDENTITY(1,1) PRIMARY KEY,
-    wpnName VARCHAR(255),
+    wpnName VARCHAR(255)NOT NULL,
     wpnRange INT,
     bleedFac FLOAT,
-    sharpDmg INT,  -- Initial sharp damage
-    bluntDmg INT,  -- Initial blunt damage
-    weight FLOAT
-);
-ALTER TABLE stat_wpn_melee ADD  simpleDmg int;
+    sharpDmg INT,  
+    bluntDmg INT,  
+	simpleDmg INT,
+    weight FLOAT,
+	quality INT NOT NULL
+); --done for v1 DB
 
 CREATE TABLE stat_wpn_gun (
     wpn_gun_id INT IDENTITY(1,1) PRIMARY KEY,
-    wpnName VARCHAR(255),
+    wpnName VARCHAR(255)NOT NULL,
     ammoType VARCHAR(50),
     magSize INT,
     rpm INT,
     durability INT, -- 1 increment per 100 rounds or so? not sure yet actually
     compatibility VARCHAR(255),
-    weight FLOAT
-);
+    weight FLOAT,
+	quality INT NOT NULL
+); --done for v1 DB
 
 CREATE TABLE stat_wpn_launcher (
     wpn_launcher_id INT IDENTITY(1,1) PRIMARY KEY,
-    wpnName VARCHAR(255),
+    wpnName VARCHAR(255)NOT NULL,
     ammoType VARCHAR(50),
     magSize INT,
     reloadTime INT,
     guideSpeed DECIMAL(6,3),
     durability INT,
-    weight FLOAT
-);
+    weight FLOAT,
+	quality INT NOT NULL
+); --done for v1 DB
 
 CREATE TABLE stat_wpn_ordnance (
     wpn_ordnance_id INT IDENTITY(1,1) PRIMARY KEY,
-    wpnName VARCHAR(255),
+    wpnName VARCHAR(255)NOT NULL,
     wpnRange INT,
     wpnLeRange INT,
+	wpnDamage INT,
     duration INT,
-    weight FLOAT
+    weight FLOAT,
+	quality INT NOT NULL
+); --done for v1 DB
+
+--tools
+CREATE TABLE stat_itm_tool (
+itm_tool_id INT IDENTITY(1,1) PRIMARY KEY,
+    itmName VARCHAR(255)NOT NULL,
+	weight FLOAT,
+	quality INT
 );
+
+--materials (consumables, but not food or lighting or medical)
+CREATE TABLE stat_itm_mat (
+itm_mat_id INT IDENTITY(1,1) PRIMARY KEY,
+    itmName VARCHAR(255)NOT NULL,
+	uses INT, --for tape and wire: 1 use is 1 meter or below.
+	weight FLOAT,
+	quality INT
+);
+
+--Shelter
+--navigation
+--communication
+--illumination(vision)
+--clothing
+--gear
+
+--(Now what has similar attributes????)
+--attributes of Axe: weight, effectLevel, durability
+--attributes of Foldable saw: weight, effectLevel, durability
+--attributes of Nails: weigth, 
+--attributes of Rope weight, length(meters int)(durability??), maxLoad
+--attributes of Superglue: weight, maxLoad --scrap the maxloads here
+--attributes of Tent: weight, color, is WaterProof
+--attributes of Radio kit: range, batteryType, duration, weight
+--attributes of oil lamp: lightLevel, duration, capacity,  weight, fuel type, 
+--attributes of gas stove: heatlevel, duration, fueltype
+--attributes of NS-71: lightLevel, intensification, battryType, duration.
+--attributes of
+--attributes of
+
+
+
+
+
+
+
 
 -- Dynamic weapon instances (generated from static templates)
 CREATE TABLE wpn_melee (
@@ -56,6 +108,7 @@ CREATE TABLE wpn_melee (
     wpnName VARCHAR(255) NOT NULL, -- Custom name (defaults to template name)
     currentSharpDmg INT, -- Tracks sharp damage over time
     currentBluntDmg INT, -- Tracks blunt damage over time
+	currentQuality INT,
     FOREIGN KEY (stat_wpn_melee_id) REFERENCES stat_wpn_melee(wpn_melee_id)
 );
 
@@ -66,6 +119,7 @@ CREATE TABLE wpn_gun (
     currentAmmoType VARCHAR(50),
     currentAmmo INT,
     condition INT,					--changed currentDurability to condition
+	currentQuality INT,
     FOREIGN KEY (stat_wpn_gun_id) REFERENCES stat_wpn_gun(wpn_gun_id)
 );
 
@@ -75,6 +129,7 @@ CREATE TABLE wpn_launcher (
 	wpnName VARCHAR(255) NOT NULL,
     currentAmmoType VARCHAR(50),
     condition INT,						--changed currentDurability to condition	
+	currentQuality INT,
     FOREIGN KEY (stat_wpn_launcher_id) REFERENCES stat_wpn_launcher(wpn_launcher_id)
 );
 
@@ -117,7 +172,9 @@ CREATE TABLE droppedItems (
     despawnTime INT
 );
 
-COMMIT TRANSACTION;
+
+
+
 
 --checking tables
 SELECT * FROM stat_wpn_melee; 
@@ -128,85 +185,7 @@ SELECT * FROM stat_wpn_ordnance;
 SELECT * FROM wpn_melee, wpn_gun, wpn_launcher, wpn_ordnance;
 SELECT * FROM actor, inventory, droppedItems;
 
---inserting data from ItemList
---rules: (strting with melee all the was to ordnance)
---melee range in cm, max value 2,5 meters, ignore all DMG coeffs, just add simpleDmg
---guns: 
 
-
-
--- Insert Melee Weapons (Knife, Dagger, Bat) --DONE
-INSERT INTO stat_wpn_melee (wpnName, wpnRange, bleedFac, sharpDmg, bluntDmg, weight, simpleDmg) VALUES
-('Hunter''s knife', 130, 0, 0, 0, 0.410, 25),  -- Common melee knife, decent damage
-('USMC Knife', 150, 0, 0, 0, 0.320, 35),  -- Better knife, more durable
-('Dagger', 130, 0, 0, 0,  0.185, 60),        -- Slightly weaker, fast for close range
-('Bat', 200, 0, 0, 0, 0.950, 45); -- Blunt weapon, strong blunt damage, slower
---DELETE FROM stat_wpn_melee WHERE sharpDmg =  0;
-
--- Insert Guns (Handguns, SMGs, Assault Rifles) --DONE
-INSERT INTO stat_wpn_gun (wpnName, ammoType, magSize, rpm, durability, compatibility, weight) VALUES
-('Tokarev TT-33', '7.62x25mm Tokarev', 8, 600, 75, 'None', 0.85),  -- Old gun, lower durability, decent rate of fire
-('S&W .32 revolver', '.32 ACP', 6, 500, 90, 'None', 0.75), -- Revolver, low capacity but reliable
-('Glock 17', '9x19mm Parabellum', 17, 800, 95, 'None', 0.85),         -- Standard, reliable, decent durability
-('MP5K', '9x19mm Parabellum', 30, 900, 80, 'None', 2.5),              -- SMG, fast rate of fire
-('PPSh-41', '7.62x25mm Tokarev', 71, 1000, 70, 'None', 5.5),       -- Older but high fire rate, large magazine
-('AK-47', '7.62x39mm', 30, 600, 100, 'None', 3.3),         -- Iconic rifle, high durability
-('VSS Vintorez', '9x39mm', 10, 600, 85, 'None', 3.2),    -- Quiet sniper, good for stealth
-('SCAR H', '7.62x51mm NATO', 20, 650, 95, 'None', 3.9),         -- Modern, very high durability
-('SIG 553', '5.56x45mm NATO', 30, 700, 90, 'None', 3.4);        -- Modern rifle for specops (expensive too)
-
--- Insert Sniper Rifles --DONE
-INSERT INTO stat_wpn_gun (wpnName, ammoType, magSize, rpm, durability, compatibility, weight) VALUES
-('Mosin Nagant', '7.62x54R', 5, 40, 80, 'None', 4.0),     -- Classic, solid long-range
-('Dragunov', '7.62x54R', 10, 30, 90, 'None', 4.5),        -- Semi-auto, good range
-('L96', '7.62x51 NATO', 5, 40, 95, 'None', 6.0),              -- High-end sniper
-('Barrett M82', '12.7x99mm', 10, 30, 100, 'None', 13.0);   -- Heavy sniper, high damage and durability
-
--- Insert Shotguns --DONE
-INSERT INTO stat_wpn_gun (wpnName, ammoType, magSize, rpm, durability, compatibility, weight) VALUES
-('TOZ-106', '12ga', 3, 40, 80, 'None', 3.0),      -- Low end shotgun
-('Mossberg 500', '12ga', 5, 60, 85, 'None', 3.5),  -- Reliable, good durability
-('Saiga 12', '12ga', 10, 80, 90, 'None', 4.0);     -- High rate of fire, good for close combat
-
--- Insert Launchers --DONE
-INSERT INTO stat_wpn_launcher (wpnName, ammoType, magSize, reloadTime, guideSpeed, durability, weight) VALUES
-('RPG-7', 'HEAT', 1, 5, 0, 90, 10.0),      -- Anti-tank, slow reload but high durability
-('AT-4',  'HEAT', 1, 0, 0, 1, 6.7),          --affordable effective against Armored vehicles, used by anyone with a supporting group
-('Javelin', 'Thermal', 1, 8, 0.5, 95, 15.0), -- Advanced guided missile, good durability
-('M302 grenade launcher', 'Frag', 6, 2, 0, 70, 4.0); -- Grenade launcher, for spec ops ppl
-
--- Insert Ordnance --DONE
-INSERT INTO stat_wpn_ordnance (wpnName, wpnRange, wpnLeRange, duration, weight) VALUES --duration is int in seconds, Range is float (1 metr . 10 cm)
-('RDG-5', 15, 3.5, 3, 0.3),    -- Grenade, short range, lightweight
-('M67', 15, 4.0, 4, 0.4),      -- Standard grenade, medium range
-('Molotov', 10, 1.5, 10, 0.5),  -- Fire-based ordnance, medium range
-('C4 explosive', 0, 20, 30, 1.0), -- Powerful explosive, heavy weight
-('PFM-1 Mine', 0, 2.0, 300, 0.075 ), --anti personnel wounding mine
-('VS-50', 0, 3, 0,  0.185);
-
-
---alters & inserts
-ALTER TABLE stat_wpn_ordnance ALTER COLUMN wpnLeRange FLOAT NOT NULL;
-ALTER TABLE x ADD quality INT NOT NULL; --quality: 1(bad, available), 2(cheap, minimal), 3(decent, affordable), 4(good, expensive), 5(rare, powerful);
-
-ALTER TABLE stat_wpn_ordnance ADD quality INT; -- make not null after altering (ofc not possible to do instantly
-
---ALTER TABLE [column_name] ADD CONSTRAINT [column_name_constraintName] CHECK [column_name_constraintName] IN('this', 'this', 'or this'));
-
-INSERT INTO stat_wpn_melee (quality) 
-VALUES (3),(4),(5),(2); --ofc this doesnt work bruh
-
-UPDATE stat_wpn_ordnance --first time using CASE in SQL 
-SET quality = CASE 
-    WHEN wpnName = 'RDG-5' THEN 3
-    WHEN wpnName = 'M67' THEN 4
-    WHEN wpnName = 'Molotov' THEN 2
-    WHEN wpnName = 'C4 explosive' THEN 5
-	WHEN wpnName = 'PFM-1 Mine' THEN 3
-	WHEN wpnName = 'VS-50' THEN 5
-	WHEN wpnName = 'Saiga 12' THEN 4
-END;
-
-
-DELETE FROM stat_wpn_melee WHERE weight IS NULL;
-SELECT * FROM stat_wpn_melee; 
+DROP DATABASE AbstractGame;
+ALTER TABLE stat_wpn_melee, stat_wpn_gun, stat_wpn_launcher, stat_wpn_ordnance, wpn_melee, wpn_launcher, wpn_gun, wpn_ordnance
+DROP TABLE stat_wpn_melee, stat_wpn_gun, stat_wpn_launcher, stat_wpn_ordnance, wpn_melee, wpn_launcher, wpn_gun, wpn_ordnance;

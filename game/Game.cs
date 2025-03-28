@@ -14,7 +14,7 @@ namespace AbstractGame
         public bool isRunnung = false;
         //public FactionData factions; moved to program.cs
         public World World { get; private set; }
-        public Player Player { get; private set; }
+        public Actor Player { get; private set; }
         public LifeNet LifeNet { get; private set; }
 
         public Game(string gameNameInput, string playerName, string faction, string playstyle, int difficulty) //construct game, need params for world and NPC???? (prop yes)
@@ -25,7 +25,7 @@ namespace AbstractGame
             //factions = FactionLoader.LoadFactions("resources/gameOptions.json"); moved to program.cs
 
             //World = new World(difficultyLevel);
-            Player = new Player();
+            Player = new Actor();
             LifeNet = new LifeNet();
         }
 

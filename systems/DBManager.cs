@@ -10,7 +10,7 @@ namespace AbstractGame.systems
     public class DBManager
     {
         //private static string folderPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "resources"); // Folder path ChatGPT magic, doesnt rlly work so well (always went into bin/debug folder)
-        private static string folderPath = @"C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources"; //hard path for now until I figure out how this works (no time)
+        private static string folderPath = @"C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\"; //hard path for now until I figure out how this works (no time)
         private static string dbPath;
         public static string connectionString;
 
@@ -21,39 +21,66 @@ namespace AbstractGame.systems
             return connection;
         }*/
 
-        public static void SetGameDatabase(string gameName)
+        public static void SetDatabasePath(string gameName)
         {
-            dbPath = Path.Combine(folderPath, $"{gameName}.db");
-            connectionString = $"Data Source={dbPath};Version=3;";
+            //dbPath = Path.Combine(folderPath, $"{gameName}.db");
+            //connectionString = $"Data Source={dbPath};Version=3;"; 
+            connectionString = $"Data Source=C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\{gameName}.db;Version=3;";
 
-            Console.WriteLine($"Database set to: {dbPath}");
+            Console.WriteLine($"Database path set to: {connectionString}");
         }
         public static void CreateDB(string dbName)
         {
-            if (string.IsNullOrEmpty(dbPath))
+            if (string.IsNullOrEmpty(connectionString))
             {
-                Console.WriteLine("ERROR: Database path is not set. Call SetGameDatabase() first."); //debug
+                Console.WriteLine("ERROR: Database path is not set. Call SetGameDatabase() first."); //debug //keeps triggering for no apparent reason, atleast 2 times or 3 times
             }
 
             try
             {
                 SQLiteConnection.CreateFile($"{dbName}.db");
-                Console.WriteLine($"DB created successfully at: {dbPath}");
+                Console.WriteLine($"DB created successfully at: {connectionString}");
             }
             catch
             {
                 Console.WriteLine("DB could not be created");
             }
+            InitDB(); //moved here for SQL logic error no such table as Player
             
         }
         public static void InitDB()
         {
-            if (string.IsNullOrEmpty(dbPath))
+            if (string.IsNullOrEmpty(connectionString))
             {
                 Console.WriteLine("ERROR: Database path is not set. Call SetGameDatabase() first."); //debug
             }
 
-            using (var connection = new SQLiteConnection(connectionString))
+            
+            
+            string createTablesQuery2 = @"
+            CREATE TABLE IF NOT EXISTS Player (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Name TEXT NOT NULL,
+            Faction TEXT NOT NULL,
+            Playstyle TEXT NOT NULL,
+            Money INTEGER DEFAULT 0,
+            Health INTEGER DEFAULT 100,
+            Difficulty INT NOT NULL);";
+
+            try 
+            {
+                using var connection = new SQLiteConnection(connectionString);
+                connection.Open();
+
+                using var command = new SQLiteCommand(createTablesQuery2, connection);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Table 'Player' created successfully.");
+            }
+            catch(SQLiteException ex)
+            {
+                Console.WriteLine($"creating tables failed at: + {ex.Message}");
+            }
+            /*using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
                 string createTablesQuery = @"
@@ -70,7 +97,8 @@ namespace AbstractGame.systems
                 {
                     Console.WriteLine("InitDB Lines affected: " + command.ExecuteNonQuery());
                 }
-            }
+            }*/
+
         }
         public static void DBInsert(SQLiteConnection connection, string tableName, Dictionary<string, object> values) //little param confusion
         {
@@ -79,7 +107,7 @@ namespace AbstractGame.systems
 
             string insertQuery = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters})";
 
-            using (var command = new SQLiteCommand(insertQuery, connection))
+            using (var command = new SQLiteCommand(insertQuery, connection))  
             {
                 foreach (var kvp in values)
                 {
@@ -87,8 +115,6 @@ namespace AbstractGame.systems
                 }
                 Console.WriteLine("DBInsert Lines affected:" + command.ExecuteNonQuery());
             }
-
-
         }
         public static void QueryDB(string query)
         {
@@ -97,7 +123,7 @@ namespace AbstractGame.systems
                 connection.Open();
                 using (var command = new SQLiteCommand(query, connection))
                 {
-                    Console.WriteLine("InitDB Lines affected:" + command.ExecuteNonQuery());
+                    Console.WriteLine("QueryDB Lines affected:" + command.ExecuteNonQuery());
                 }
             }
         }

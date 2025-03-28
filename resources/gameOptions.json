@@ -21,7 +21,8 @@
 			"Description": "Civilized, trying to rebuild and keep society together.",
 			"Playstyles": {
 				"Trader": "You rely on economy and bartering to get what you need.",
-				"Guard": "You protect settlements and enforce order."
+				"Guard": "You protect settlements and enforce order.",
+				"Scout":  "You explore new possibilities for the City and provide scarce resources"
 			}
 		},
 		"Griever": {
