@@ -86,12 +86,16 @@ Heute schreibe ich ein kleiner Beitrag: Ich hatte sehr viele Probleme mit der SQ
 - [x] Console.Clear(); damit nicht die alte Outputs/inputs immer sichtbar sind
 
 Heute habe ich:
-- InvConfig.json erstellt (noch nicht in CreateInventory angewendet
-- Classes für das neue JSON
-- In Faction.cs ein modulärer JSON Deserializer gemacht um der "Proprietäre" von GameOptions.json zu ersetzen, es verwendet als return type ein dynamisches (generic <T>) um mehrere json files zu ünterstützen.
+- InvConfig.json erstellt (noch nicht in CreateInventory angewendet)
+- Classes für das neue JSON (für deserializing)
+- In Faction.cs ein modulärer JSON Deserializer gemacht um der "Proprietäre" von GameOptions.json zu ersetzen, es verwendet als return type ein dynamisches (generic <T>) um mehrere json files zu ünterstützen, es funktioniert aber noch nicht ganz...
 - Die DB inserts fertig fur CreateInventory
+- Das komische DB in falsche Speicherort-Problem habe ich gelöst, indem ich die SetDatabasePath methode verbessert habe
 
 NOTE: Ich bin in Debug.cs und faction.cs dran, die JSONDeserializers funktionierend zu kriegen und muss die richtige class und type struktur herausfinden
 
 
 ## 4.4: Auspolieren & Abschluss
+- [ ] relative paths für resources
+- [ ] CreateInventoryMethode verbunden mit invConfig.json
+- [ ] Generation von Locations in World.cs
