@@ -82,8 +82,8 @@ Heute schreibe ich ein kleiner Beitrag: Ich hatte sehr viele Probleme mit der SQ
 
 ## 28.3: Auspolieren
 - [ ] Inputverarbeitung bei "Console.ReadLine();" mit exception handling und die möglichkeit, nochmals ein Input zu geben
-- [ ] [dbName].db erstellen funktioniert immer, geht aber manchmal nicht im resources Folder (obwohl es so angegeben wird von SQLite??) sondern im bin > debug > net8.0
-- [ ] Console.Clear(); damit nicht die alte Outputs/inputs immer sichtbar sind
+- [x] [dbName].db erstellen funktioniert immer, geht aber manchmal nicht im resources Folder (obwohl es so angegeben wird von SQLite??) sondern im bin > debug > net8.0
+- [x] Console.Clear(); damit nicht die alte Outputs/inputs immer sichtbar sind
 
 Heute habe ich:
 - InvConfig.json erstellt (noch nicht in CreateInventory angewendet
