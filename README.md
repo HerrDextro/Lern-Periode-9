@@ -97,5 +97,20 @@ NOTE: Ich bin in Debug.cs und faction.cs dran, die JSONDeserializers funktionier
 
 ## 4.4: Auspolieren & Abschluss
 - [ ] relative paths für resources
-- [ ] CreateInventoryMethode verbunden mit invConfig.json
-- [ ] Generation von Locations in World.cs
+- [x] CreateInventoryMethode verbunden mit invConfig.json
+
+# Reflexion 04.04.2024
+
+In diese Lernperiode wollte ich darauf fokussieren, mein Gedankengang beim programmieren zu verbessern. Was ich damit meine: Die Übertragung von Logik aus mein Gehirn zum Computer, also das programmieren, geht ziemlich gut obwohl es manchmal lange dauert, eine Lösung für ein problem zu finden. Ich habe aber am meisten Mühe mit der Prorgammarchitektur und entscheidungen treffen, wie etwas funktionieren wird. Ich habe mich deswegen dafür entschieden, ein Game-Backend zu machen, da ich hier viele entscheidungen treffen muss über wie Daten fliessen, gespeichert werden, wie die Datenbank strukturiert werden muss und dann zu entscheiden, welches von den 300 mögliche Lösungen ich wählen wurde. Meine Vorgehensweise war ein bisschen unkonventionell, da ich vom Boden auf geschafft habe und immer sehr weit vorausgedacht habe. Normalerweise hätte ich mit so etwas zuerst mal eine kleine Testdatenbank erstelt, dann ein Tool um Daten abzurufen und zu schreiben. Dieses mal ging ich so vor: 
+- Ich mache ein "Game"
+- Was braucht ein "Game"
+- Zuerst: loading screen (Create Game, Load Game, Settings)
+- Um ein Game zu haben, muss man den erstellen können (CreateNewGame Methode)
+- Was braucht ein sehr simples Game alles? (Gammename(für LoadGame), Player Name, Difficulty, und Faction und Playstyle da das zu mein Game-style passt)
+- Wie speichere ich das alles? -> SQLite & JSON für descriptions and configs)
+- Erstelle Test-DB mit "Player" Tabelle mit die oben genannten Parameter
+- Teste alles
+- Erstelle grosses DB
+
+Jetzt ist die Zeit vorbei, aber das DB funktioniert, was mein Ziel war. Ich habe gelernt, wie ich nachdenken kann, und wie ich Lösungen für Probleme finden kann. Auch habe ich, was ich zwar nicht hier im Repo habe, es geübt Optionenauswertungen zu machen für die verschiedene Lösungen (ZB: Was nutze ich für die config files? JSON, INI?)
+Daneben müsste ich mein OOP verständnis verbessern, da ich classes meistens nur also container for Methodengruppen verwendet habe, und sie jetzt als Objecte verwenden müsste weil ich nur so das JSON deserializen kann.
