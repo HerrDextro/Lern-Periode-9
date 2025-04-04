@@ -19,18 +19,19 @@ namespace AbstractGame
     }
 
     //InvConfig.json
-    public class PlaystyleInventoryRelation
+    public class PlaystyleCondition  // Represents a single playstyle's properties
     {
-        public List<int> AllowedQualities { get; set; } //list bc no keys needed, just like an array
+        public List<int> AllowedQualities { get; set; }
         public List<string> Weapons { get; set; }
         public int ArmorLevel { get; set; }
     }
-    public class InventoryConditions
-    {
-        public Dictionary<string, PlaystyleInventoryRelation> FactionsPlaystyles { get; set; }
-        public Dictionary<string, float> DifficultyModifiers { get; set; }
 
+    public class InventoryConfig  // Represents the root JSON object
+    {
+        public Dictionary<string, Dictionary<string, PlaystyleCondition>> Factions { get; set; }
+        public Dictionary<string, float> DifficultyModifiers { get; set; }
     }
+
     public class JSONLoader //nicht modular, only works for GameOptions.json, I have to somehow make the return object modular?? (JSONObject and make the method type dynamic //guess what its <T> (generic type that can be set to anything)
     {
         public static FactionData LoadFactions(string filePath)
@@ -50,6 +51,17 @@ namespace AbstractGame
             }
             catch (Exception ex) {Console.WriteLine("JSON file failed to deserlialize:"); throw; }
             
+        }
+
+        public static void JSONSelect()
+        {
+            var inventoryConfig = JSONDeserializer.LoadJson<InventoryConfig>(@"C:\Users\Neo\source\repos\AbstractGame\AbstractGame\resources\InvConfig.json");
+
+            // Example: Get the "Raider" playstyle from the "Bandit" faction
+            var raider = inventoryConfig.Factions["Bandit"]["Raider"];
+
+            Console.WriteLine($"Raider's armor level: {raider.ArmorLevel}");
+
         }
     }
 

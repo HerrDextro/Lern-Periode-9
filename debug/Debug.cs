@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AbstractGame.systems;
 using System.Resources;
+using AbstractGame.entities;
 
 namespace AbstractGame.debug
 {
@@ -49,8 +50,8 @@ namespace AbstractGame.debug
                     DBManager.CreateDB(dbName); //still crêates the DB
                     break;
                 case "5":
-                    InventoryConditions result = JSONDeserializer.LoadJson<InventoryConditions>(@"C:\Users\Neo\source\repos\AbstractGame\AbstractGame\resources\InvConfig.json");  //phew
-                    Console.WriteLine(result.FactionsPlaystyles.Keys);
+                    //JSONDeserializer.JSONSelect();
+                    ItemManager.CreateInventory("Factionless", "Light", 1);
                     break;
             }
         }
@@ -98,7 +99,7 @@ namespace AbstractGame.debug
 
             //making modular
             string json2 = File.ReadAllText(filePath);
-            InventoryConditions factions2 = JSONDeserializer.LoadJson<InventoryConditions>(json2);
+            InventoryConfig factions2 = JSONDeserializer.LoadJson<InventoryConfig>(json2);
 
 
             if (factions == null || factions.Factions == null)
@@ -120,6 +121,8 @@ namespace AbstractGame.debug
                 }
             }
         }
+
+        
     }
      
 }

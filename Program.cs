@@ -52,8 +52,6 @@ namespace AbstractGame
                 case 4:
                     Debug.Query();
                     break;
-
-
             }    
         }
         private static void ShowText(string[] list)
@@ -61,10 +59,8 @@ namespace AbstractGame
             for (int i = 0; i < list.Length; i++)
             {
                 Console.WriteLine(list[i], 3, i + 1);
-            }
-            
+            }   
         }
-
         public static void CreateNewGame() //needs constraints/exception handling, also maybe try make this cleaner.
         {
             try //chatGPT
@@ -126,12 +122,8 @@ namespace AbstractGame
             { "Difficulty", diffChoice }
             });
             Debug.SelectAll("Player");
-
-
             //Game newGame = new Game(gameName, name, factionChoice, psChoice, diffChoice); 
         }
-       
-
         static void LoadGame()
         {
             //merely showing the only table rn
