@@ -66,7 +66,7 @@ Die CreateInventory-Methode habe ich noch nicht umgesetzt, da ich mit dem Erstel
 
 Ich habe noch ein Bild von das neue DB system und auch eines des Datenmodell eingefügt damit ich sie später hier anschauen kann.
 <img src="https://github.com/user-attachments/assets/44a6f29c-bcc4-48df-88da-b8ba154ade2e" width="480">
-<img src="Screenshot 2025-03-14 114955.png" width="150">
+<img src="Screenshot 2025-03-14 114955.png" width="480">
 NOTE: Sachen wie "ammo types werden nicht sofort in der DB gespeichert sobald sie in-game gewechselt werden (ZB: Shotgun allowed ammo types: buckshot, slug, dragons breath, in game wird shotgun von buckshot zu slug gewechselt) aber sie werden im in-memory gamestate verwaltet und nur gespeichert OnGameSave.
 AUCH NOTE: ich möchte gerne (bitte) 3 AP's machen statt 4, aber dafür wird ich sie viel besser ausformulieren, und sie werden die ganze ILA Stunden dauern.
 
@@ -132,5 +132,44 @@ Jetzt ist die Zeit vorbei, aber die DB funktioniert, was mein Ziel war. Ich habe
 
 Daneben muss ich mein OOP-Verständnis verbessern, da ich Klassen meistens nur als Container für Methodengruppen verwendet habe. Jetzt muss ich sie als Objekte verwenden, weil ich nur so das JSON deserialisieren kann.
 
+
+# Lernperiode 9.2 (Fortsetzung Lernperiode 9.1
+
+Als Lernperiode "5" mache ich eine Fortzsetzung von lernperiode "4", da das Thema dieser Lernperiode "Persistence" ist, und für uns SQL zum üben, und ich schon die ganze letzte Lernperiode mit SQL und JSON gearbeitet habe.
+Heute habe ich nochmals mein JSON zur inventoryconfig verändert, um das neue Graph system für die Itemauswahl zu benutzen. Das Graphsystem funktioniert indem jedes Item eine Qualität (X) und verfügbarkeit (Y). Ich habe meine JSON Struktur so gestaltet, dass es pro Playstyle alles gut passt mit die Items.
+Dann habe ich die Classes erstellt, um das JSON verwenden zu können. 
+Hier ein beispiel vom JSON:
+```
+{
+  "InvItemRules": {
+    "Factionless": {
+      "Light": {
+        "QualityRange": [ 3, 6 ],
+        "AvailabilityRange": [ 6, 9 ],
+        "ItemFilters": {
+          "WeaponTypes": {
+            "Pistol": 0.4,
+            "SemiAuto": 0.3,
+            "ShortRifle": 0.2,
+            "Melee": 0.1,
+            "Smoke": 0.2
+          },
+          "WeaponTags": [ "Light", "Reliable" ],
+          "WeightLimit": 4.0,
+          "SpawnCount": [ 1, 1 ],
+          "ProbabilityWeighting": "distribution",
+
+          "GearTags": [ "Navigation", "SurvivalBasic", "Minimal" ],
+          "GearMaxItems": 3,
+
+          "ItemTags": [ "Essential" ],
+          "ItemMax": 5
+        }
+      },
+```
+Wie man sieht ist es jetzt viel mehr optimiert, da zum Beispiel die "Light" Playstyle jetzt wirklich nur die wichtigste Items hat und so wenig wiegt wie möglich.
+Dann habe ich die Classes dazu erstellt im `ItemManager.cs`: `ItemFilters` `InvItemRule` `InvItemRuleRoot`.
+Und endlich die `CreateInventory` Methode.
+
 # Fertiges Projekt
-Ich kann jetzt ein Spiel erstellen, die Startparameter eingeben und dann wird eine Welt erstellt und in eine Datenbank gespeichert. Ich kann dann hithilfe der Tools die Daten der Welt abrufen.
+To be continued
