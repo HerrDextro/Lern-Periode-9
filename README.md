@@ -79,3 +79,58 @@ Ich habe außerdem ein Bild des neuen DB-Systems und ein UML-Diagramm eingefügt
 <img src="Screenshot 2025-03-14 114955.png" width="480">
 Hinweis: Dinge wie „ammo types“ werden nicht sofort in der DB gespeichert, wenn sie im Spiel geändert werden (z. B. Shotgun: Buckshot → Slug). Sie werden im Arbeitsspeicher verwaltet und erst beim GameSave persistiert.
 Weitere Bitte: Ich möchte gerne nur 3 APs machen (statt 4), diese aber besser ausformuliert und auf die gesamte ILA-Stunde abgestimmt.
+
+26.3:
+Heute schreibe ich einen kleinen Beitrag: Ich hatte sehr viele Probleme mit der SQLite-Implementierung. Obwohl am Anfang alles super funktioniert hat, habe ich ziemlich schnell alles kaputt gemacht. Es hat einige Zeit gedauert, es zu beheben, da ich mir kein ChatGPT erlaubt habe. Das liegt daran, dass ich wirklich verstehen möchte, wie jedes einzelne Detail bei SQLite funktioniert. Es funktioniert jetzt (und weiterhin) alles wieder super, aber ich kann ganz ehrlich nicht sagen, dass ich mit dem Block "Architektur" fertig bin. Deswegen mache ich heute und morgen nochmals ein paar extra Architekturblöcke, in denen ich die Basisfunktion überall schaffe, sowie die CreateInventory- und Location-Generation – auch wenn es nur wenige TestItems/TestLocations sein werden...
+
+28.3: Auspolieren
+ Inputverarbeitung bei "Console.ReadLine();" mit Exception Handling und der Möglichkeit, nochmals eine Eingabe zu machen
+
+ [dbName].db erstellen funktioniert immer, wird aber manchmal nicht im Resources-Ordner gespeichert (obwohl so von SQLite angegeben), sondern in bin > debug > net8.0
+
+ Console.Clear(); damit nicht die alten Outputs/Inputs immer sichtbar sind
+
+Heute habe ich:
+
+InvConfig.json erstellt (noch nicht in CreateInventory angewendet)
+
+Klassen für das neue JSON (für Deserializing)
+
+In Faction.cs einen modularen JSON-Deserializer gemacht, um die "proprietäre" Lösung von GameOptions.json zu ersetzen; dieser verwendet als Rückgabewert ein dynamisches (generic <T>), um mehrere JSON-Dateien zu unterstützen. Es funktioniert aber noch nicht ganz ...
+
+Die DB-Inserts für CreateInventory fertiggestellt
+
+Das Problem mit dem falschen Speicherort der DB-Datei gelöst, indem ich die SetDatabasePath-Methode verbessert habe
+
+NOTE: Ich arbeite gerade in Debug.cs und Faction.cs daran, die JSON-Deserializers zum Laufen zu bringen und die richtige Klassen- und Typstruktur herauszufinden
+
+4.4: Auspolieren & Abschluss
+ Relative Paths für Resources
+
+ CreateInventory-Methode mit InvConfig.json verbunden
+
+Reflexion 04.04.2024
+In dieser Lernperiode wollte ich mich darauf fokussieren, meinen Gedankengang beim Programmieren zu verbessern. Was ich damit meine: Die Übertragung von Logik aus meinem Gehirn zum Computer – also das Programmieren – funktioniert ziemlich gut, obwohl es manchmal lange dauert, eine Lösung für ein Problem zu finden. Ich habe aber am meisten Mühe mit der Programmarchitektur und Entscheidungen darüber zu treffen, wie etwas funktionieren soll. Deshalb habe ich mich dafür entschieden, ein Game-Backend zu machen, da ich hier viele Entscheidungen darüber treffen muss, wie Daten fließen, gespeichert werden, wie die Datenbank strukturiert werden muss und dann zu entscheiden, welche der 300 möglichen Lösungen ich wähle.
+
+Meine Vorgehensweise war ein bisschen unkonventionell, da ich von Grund auf gearbeitet habe und immer sehr weit vorausgedacht habe. Normalerweise hätte ich bei so etwas zuerst eine kleine Testdatenbank erstellt, dann ein Tool, um Daten abzurufen und zu schreiben. Dieses Mal ging ich so vor:
+
+Ich mache ein "Game"
+
+Was braucht ein "Game"?
+
+Zuerst: Loading Screen (Create Game, Load Game, Settings)
+
+Um ein Game zu haben, muss man es erstellen können (CreateNewGame-Methode)
+
+Was braucht ein sehr simples Game? (GameName (für LoadGame), PlayerName, Difficulty, Faction und Playstyle – das passt zu meinem Game-Style)
+
+Wie speichere ich das alles? → SQLite & JSON für Descriptions und Configs
+
+Erstelle Test-DB mit "Player"-Tabelle mit den oben genannten Parametern
+
+Teste alles
+
+Erstelle große DB
+
+Jetzt ist die Zeit vorbei, aber die DB funktioniert – was mein Ziel war. Ich habe gelernt, wie ich nachdenken kann und wie ich Lösungen für Probleme finde. Auch habe ich, was zwar nicht hier im Repo ist, geübt, Optionenbewertungen zu machen für die verschiedenen Lösungen (z. B.: Was nutze ich für die Config-Files? JSON, INI?).
+Daneben muss ich mein OOP-Verständnis verbessern, da ich Klassen meistens nur als Container für Methodengruppen verwendet habe und sie jetzt als Objekte verwenden muss, weil ich nur so das JSON deserialisieren kann.
