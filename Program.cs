@@ -114,7 +114,7 @@ namespace AbstractGame
             DBManager.InitDB(); //initalize DB whenever in main creation menu, otherwise just load it.
             var connection = new SQLiteConnection(DBManager.connectionString);
             connection.Open();
-            DBManager.DBInsert(connection, "Player", new Dictionary<string, object>
+            DBManager.    DBInsert(connection, "Player", new Dictionary<string, object>
             {
             { "Name", name },
             { "Faction", factionChoice },

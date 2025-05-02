@@ -121,7 +121,10 @@ namespace AbstractGame.debug
                 }
             }
         }
-
+        public class Experiment //see la ter
+        {
+            public Dictionary<string, string> Value { get; set; }
+        }
         
     }
      

@@ -1,99 +1,97 @@
 ﻿{
-  "Factions": {
+  "InvItemRules": {
     "Factionless": {
-      "Random": {
-        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 1
-      },
       "Light": {
-        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ]
-      },
-      "Tourist": {
-        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 3
+        "QualityRange": [ 3, 6 ],
+        "AvailabilityRange": [ 6, 9 ],
+        "ItemFilters": {
+          "WeaponTypes": {
+            "Pistol": 0.4,
+            "SemiAuto": 0.3,
+            "ShortRifle": 0.2,
+            "Melee": 0.1,
+            "Smoke": 0.2
+          },
+          "WeaponTags": [ "Light", "Reliable" ],
+          "WeightLimit": 4.0,
+          "SpawnCount": [ 1, 1 ],
+          "ProbabilityWeighting": "distribution",
+
+          "GearTags": [ "Navigation", "SurvivalBasic", "Minimal" ],
+          "GearMaxItems": 3,
+
+          "ItemTags": [ "Essential" ],
+          "ItemMax": 5
+        }
       },
       "Heavy": {
-        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 4
-      }
-    },
-    "Bandit": {
-      "Raider": {
-        "AllowedQualities": [ 1, 2, 3 ],
-        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 2
+        "QualityRange": [ 5, 8 ],
+        "AvailabilityRange": [ 4, 7 ],
+        "ItemFilters": {
+          "WeaponTypes": {
+            "LMG": 0.3,
+            "Sniper": 0.2,
+            "AssaultRifle": 0.4,
+            "Melee": 0.1
+          },
+          "WeaponTags": [ "Heavy", "Tactical", "Durable" ],
+          "WeightLimit": 12.0,
+          "SpawnCount": [ 1, 2 ],
+          "ProbabilityWeighting": "distribution",
+
+          "GearTags": [ "Shelter", "HighCapacity", "Prepping" ],
+          "GearMaxItems": 5,
+
+          "ItemTags": [ "Essential", "Tool", "Sustain" ],
+          "ItemMax": 8
+        }
       },
-      "BountyHunter": {
-        "AllowedQualities": [ 1, 2, 3, 4 ],
-        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 2
+      "Tourist": {
+        "QualityRange": [ 4, 7 ],
+        "AvailabilityRange": [ 6, 9 ],
+        "ItemFilters": {
+          "WeaponTypes": {
+            "Pistol": 0.5,
+            "ShortRifle": 0.3,
+            "Melee": 0.2
+          },
+          "WeaponTags": [ "Comfort", "Compact", "Civilian" ],
+          "WeightLimit": 6.0,
+          "SpawnCount": [ 1, 1 ],
+          "ProbabilityWeighting": "distribution",
+
+          "GearTags": [ "Comfort", "Travel", "Utility" ],
+          "GearMaxItems": 4,
+
+          "ItemTags": [ "Comfort", "Convenience", "Food" ],
+          "ItemMax": 6
+        }
       },
-      "Warlord": {
-        "AllowedQualities": [ 1, 2, 3, 4, 5 ],
-        "Weapons": [ "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 2
-      }
-    },
-    "Citizen": {
-      "Trader": {
-        "AllowedQualities": [ 1, 2, 3 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 1
-      },
-      "Guard": {
-        "AllowedQualities": [ 1, 2, 3 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 1
-      },
-      "Scout": {
-        "AllowedQualities": [ 1, 2, 3, 4 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 4
-      }
-    },
-    "Griever": {
-      "Stalker": {
-        "AllowedQualities": [ 1, 2, 3, 4 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 1
-      },
-      "Brute": {
-        "AllowedQualities": [ 1, 2 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 3
-      },
-      "Raider": {
-        "AllowedQualities": [ 1, 2, 3 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 1
-      }
-    },
-    "Elite": {
-      "Operative": {
-        "AllowedQualities": [ 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun", "Launcher" ],
-        "ArmorLevel": 5
-      },
-      "Mercenary": {
-        "AllowedQualities": [ 2, 3, 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 5
-      },
-      "Commander": {
-        "AllowedQualities": [ 4, 5 ],
-        "Weapons": [ "Melee", "Pistol", "SMG", "Rifle", "Sniper", "Shotgun" ],
-        "ArmorLevel": 5
+      "Random": {
+        "QualityRange": [ 2, 9 ],
+        "AvailabilityRange": [ 2, 9 ],
+        "ItemFilters": {
+          "WeaponTypes": {
+            "Pistol": 0.2,
+            "SemiAuto": 0.2,
+            "ShortRifle": 0.15,
+            "Sniper": 0.1,
+            "LMG": 0.1,
+            "Shotgun": 0.1,
+            "Melee": 0.15
+          },
+          "WeaponTags": [ "Unpredictable", "Mixed", "Civilian", "Military" ],
+          "WeightLimit": 10.0,
+          "SpawnCount": [ 1, 2 ],
+          "ProbabilityWeighting": "random",
+
+          "GearTags": [ "Random", "Improvised", "Unsorted" ],
+          "GearMaxItems": 5,
+
+          "ItemTags": [ "Mixed", "Junk", "Essential" ],
+          "ItemMax": 7
+        }
       }
     }
-  },
-  "DifficultyModifiers": {
-    "Easy": 0.2,
-    "Normal": 0.0,
-    "Hard": -0.2,
-    "Nightmare": -0.5
   }
 }

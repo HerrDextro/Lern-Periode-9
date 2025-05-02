@@ -1,0 +1,28 @@
+﻿{
+  "EssentialItems": {
+    "Factionless": {
+      "Light": [
+        "Backpack_Small",
+        "Jacket_Light",
+        "WaterBottle",
+        "Rope",
+        "SleepingBag_Waterproof"
+      ],
+      "Heavy": [
+        "Backpack_Large",
+        "Tent",
+        "WaterJug",
+        "MultiTool",
+        "HeavyBoots"
+      ]
+    },
+    "Elite": {
+      "Operative": [
+        "TacticalVest",
+        "Armor_Light",
+        "NightVision",
+        "WaterPouch"
+      ]
+    }
+  }
+}

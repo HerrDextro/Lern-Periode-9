@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AbstractGame
 {
     //GameOPtions.json
-    public class Faction
+    public class Faction //migrate all to JSONManager.cs?
     {
         public string description { get; set; }
         public Dictionary<string, string> Playstyles { get; set; }
@@ -40,7 +40,7 @@ namespace AbstractGame
             return JsonSerializer.Deserialize<FactionData>(json);
         }
     }
-    public class JSONDeserializer
+    public class JSONDeserializer //move modular version over to JSONManager.cs
     {
         public static T LoadJson<T>(string filePath)
         {
@@ -64,6 +64,8 @@ namespace AbstractGame
 
         }
     }
+
+    
 
 
    
