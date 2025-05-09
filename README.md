@@ -172,9 +172,12 @@ Dann habe ich die Classes dazu erstellt im `ItemManager.cs`: `ItemFilters` `InvI
 Und endlich die `CreateInventory` Methode.
 
 ## Arbeitspakete 09.05.2025
-- [ ] attribut "qaulity" 2 dimensional machen
-- [ ] attribut "tag" zu Tabellen in SQL
+- [ ] attribut "quality" 2 dimensional machen
+- [ ] attribut "tag" zu Tabellen (mindestens Test-Tabelle) in SQL
 - [ ] Testtabelle für CreateInevntory
+
+## Zusammenfassung 09.05.2025
+Heute habe ich die CreateInventory Methode umgeschrieben, da es nciht gut funktioniert hatte, und ich zur JSON verwendung ChatGPT genutzt hatte wodurch ich nicht gelernt habe wie man Werte in ein sehr veschachteltes JSON rauszieht. Auch habe 
 
 
 ## 4.4: Auspolieren & Abschluss
