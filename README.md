@@ -171,6 +171,11 @@ Wie man sieht ist es jetzt viel mehr optimiert, da zum Beispiel die "Light" Play
 Dann habe ich die Classes dazu erstellt im `ItemManager.cs`: `ItemFilters` `InvItemRule` `InvItemRuleRoot`.
 Und endlich die `CreateInventory` Methode.
 
+## Arbeitspakete 09.05.2025
+- [ ] attribut "qaulity" 2 dimensional machen
+- [ ] attribut "tag" zu Tabellen in SQL
+- [ ] Testtabelle für CreateInevntory
+
 
 ## 4.4: Auspolieren & Abschluss
 - [ ] SQL script für DB Item abfragen (select from Tabellen stat_itm_x)
