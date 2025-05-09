@@ -1,4 +1,34 @@
-﻿Definite structure (after specific playstyle fail) (without types was not controllable enough, CreateInventory was "Confused" )
+﻿Test DB script:
+
+CREATE TABLE test_wpn_gun (
+    stat_wpn_gun_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wpnName TEXT NOT NULL,
+    wpnTag TEXT NOT NULL,
+    ammoType TEXT,
+    magSize INTEGER,
+    rpm INTEGER,
+    durability INTEGER,
+    durabilityMod INTEGER,
+    compatibility TEXT,
+    weight REAL,
+    quality REAL NOT NULL,
+    availability REAL NOT NULL
+);
+INSERT INTO test_wpn_gun 
+(wpnName, wpnTag, ammoType, magSize, rpm, durability, compatibility, weight, quality, availability) 
+VALUES 
+('Tokarev TT-33', 'light-reliable', '7.62x25mm Tokarev', 8, 600, 75, 'None', 0.85, 3, 9),
+('SKS', 'medium-reliable', '7.62x39mm', 10, 400, 100, 'None', 3.8, 3, 9),
+('AK-47', 'medium-reliable', '7.62x39mm', 30, 600, 100, 'None', 3.3, 4, 10),
+('HK G3', 'heavy-powerful', '7.62x51mm NATO', 20, 600, 100, 'None', 4.1, 6, 5),
+('SCAR H', 'heavy-powerful', '7.62x51mm NATO', 20, 650, 95, 'None', 3.9, 8, 2);
+
+
+
+
+
+
+Definite structure (after specific playstyle fail) (without types was not controllable enough, CreateInventory was "Confused" )
 
 
 {
@@ -30,6 +60,175 @@
     }
   }
 }
+
+
+public class InventoryManager
+        {
+            public static ItemFilters LoadItemRules(string faction, string playstyle)
+            {
+                string json = System.IO.File.ReadAllText(@"C:\path\to\your\spawnRules.json");
+                var root = JsonConvert.DeserializeObject<InventoryRulesRoot>(json);
+
+                //Loading faction/playstyle rules
+                return root.InvItemRules[faction][playstyle].ItemFilters;  // This line is fine now
+
+            }
+
+            public static List<WeaponItem> GetEligibleWeapons(string faction, string playstyle, int difficulty)
+            {
+                // Load the spawn rules for the given faction and playstyle
+                var itemFilters = LoadItemRules(faction, playstyle);
+
+                // Adjust quality range based on difficulty
+                int minQuality = (int)(itemFilters.QualityRange[0] + (difficulty - 1));  //error CS1061
+                int maxQuality = (int)(itemFilters.QualityRange[1] - (difficulty - 1));  //error CS1061
+
+                // Prepare the SQL query with parameters
+                string allowedTypes = string.Join(",", itemFilters.WeaponTypes.Keys); //error CS1061
+                string allowedTags = string.Join(",", itemFilters.WeaponTags); //error CS1061
+
+                string query = @"
+                SELECT wpnName, wpnType, quality, availability, 'Gun' AS Source
+                FROM stat_wpn_gun
+                WHERE quality BETWEEN @MinQuality AND @MaxQuality
+                  AND wpnType IN (@AllowedTypes)
+                  AND EXISTS (
+                    SELECT 1
+                    FROM STRING_SPLIT(tags, ',')
+                    WHERE value IN (@AllowedTags)
+                  )
+                UNION ALL
+                SELECT wpnName, wpnType, quality, availability, 'Melee' AS Source
+                FROM stat_wpn_melee
+                WHERE quality BETWEEN @MinQuality AND @MaxQuality
+                  AND wpnType IN (@AllowedTypes)
+                  AND EXISTS (
+                    SELECT 1
+                    FROM STRING_SPLIT(tags, ',')
+                    WHERE value IN (@AllowedTags)
+                  )
+                UNION ALL
+                SELECT wpnName, wpnType, quality, availability, 'Launcher' AS Source
+                FROM stat_wpn_launcher
+                WHERE quality BETWEEN @MinQuality AND @MaxQuality
+                  AND wpnType IN (@AllowedTypes)
+                  AND EXISTS (
+                    SELECT 1
+                    FROM STRING_SPLIT(tags, ',')
+                    WHERE value IN (@AllowedTags)
+                  )
+                UNION ALL
+                SELECT wpnName, wpnType, quality, availability, 'Ordnance' AS Source
+                FROM stat_wpn_ordnance
+                WHERE quality BETWEEN @MinQuality AND @MaxQuality
+                  AND wpnType IN (@AllowedTypes)
+                  AND EXISTS (
+                    SELECT 1
+                    FROM STRING_SPLIT(tags, ',')
+                    WHERE value IN (@AllowedTags)
+                  );";
+
+                // Execute the query and return the result
+                List<WeaponItem> weapons = new List<WeaponItem>();
+
+                using (var connection = new SQLiteConnection(DBManager.connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        // Add parameters
+                        command.Parameters.AddWithValue("@MinQuality", minQuality);
+                        command.Parameters.AddWithValue("@MaxQuality", maxQuality);
+                        command.Parameters.AddWithValue("@AllowedTypes", allowedTypes);
+                        command.Parameters.AddWithValue("@AllowedTags", allowedTags);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var weapon = new WeaponItem
+                                {
+                                    Name = reader["wpnName"].ToString(),
+                                    Type = reader["wpnType"].ToString(),
+                                    Quality = Convert.ToInt32(reader["quality"]),
+                                    Availability = Convert.ToInt32(reader["availability"]),
+                                    Source = reader["Source"].ToString()
+                                };
+                                weapons.Add(weapon);
+                            }
+                        }
+                    }
+                }
+                return weapons;
+            }
+
+            public static Dictionary<string, object> GenerateInventory(string faction, string playstyle, int difficulty)
+            {
+                // Load the eligible weapons based on the faction, playstyle, and difficulty
+                var eligibleWeapons = GetEligibleWeapons(faction, playstyle, difficulty);
+
+                // We will assume some inventory structure here
+                var inventory = new Dictionary<string, object>();
+
+                // Prioritize weapon, gear, essential items
+                List<WeaponItem> mainWeapon = new List<WeaponItem>();
+                List<string> gear = new List<string>();
+
+                // Select the main weapon (priority: first weapon in eligible list)
+                if (eligibleWeapons.Count > 0)
+                {
+                    mainWeapon.Add(eligibleWeapons[0]);  // First weapon, for example
+                    inventory["MainWeapon"] = mainWeapon;
+                }
+
+                // Add other items like gear
+                gear.Add("Jacket");  
+                gear.Add("Boots");   
+                inventory["Gear"] = gear;
+
+                // Add essentials (water, food, etc.)
+                List<string> essentials = new List<string> { "Water", "Food" };
+                inventory["Essentials"] = essentials;
+
+                return inventory;
+            }
+        }
+
+        public class WeaponItem
+        {
+            public string Name { get; set; }
+            public string Type { get; set; }
+            public int Quality { get; set; }
+            public int Availability { get; set; }
+            public string Source { get; set; }
+        }
+
+
+        public static class InventoryRuleLoader //
+        {
+            public static InventoryRulesRoot LoadInventoryRules(string filePath)
+            {
+                string json = File.ReadAllText(filePath);
+                var rules = JsonConvert.DeserializeObject<InventoryRulesRoot>(json);
+                return rules ?? new InventoryRulesRoot();
+            }
+        }
+
+
+
+        public double GetQualityChance(int quality) //experimental
+        {
+            // Define base spawn chances per quality level (example values)
+            return quality switch
+            {
+                1 => 0.9f,
+                2 => 0.7f,
+                3 => 0.5f,
+                4 => 0.3f,
+                5 => 0.1f,
+                _ => 0f, //no idea what this one does yet
+            };
+        }
 
 
 

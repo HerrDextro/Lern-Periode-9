@@ -1,0 +1,29 @@
+﻿{
+    "InvItemRules": {
+        "Factionless": {
+            "Light": {
+                "QualityRange": [ 3, 6 ],
+                "AvailabilityRange": [ 6, 9 ],
+                "ItemFilters": {
+                    "WeaponTypes": {
+                        "Pistol": 0.4,
+                        "SemiAuto": 0.3,
+                        "ShortRifle": 0.2,
+                        "Melee": 0.1,
+                        "Smoke": 0.2
+                    },
+                    "WeaponTags": [ "light-reliable", "medium-reliable" ],
+                    "WeightLimit": 4.0,
+                    "SpawnCount": [ 1, 1 ],
+                    "ProbabilityWeighting": "distribution",
+
+                    "GearTags": [ "Navigation", "SurvivalBasic", "Minimal" ],
+                    "GearMaxItems": 3,
+
+                    "ItemTags": [ "Essential" ],
+                    "ItemMax": 5
+                }
+            }
+        }
+    }
+}

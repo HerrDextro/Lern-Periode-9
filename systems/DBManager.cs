@@ -65,7 +65,21 @@ namespace AbstractGame.systems
             Playstyle TEXT NOT NULL,
             Money INTEGER DEFAULT 0,
             Health INTEGER DEFAULT 100,
-            Difficulty INT NOT NULL);";
+            Difficulty INT NOT NULL);
+
+            CREATE TABLE test_wpn_gun (
+            stat_wpn_gun_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            wpnName TEXT NOT NULL,
+            wpnTag TEXT NOT NULL,
+            ammoType TEXT,
+            magSize INTEGER,
+            rpm INTEGER,
+            durability INTEGER,
+            durabilityMod INTEGER,
+            compatibility TEXT,
+            weight REAL,
+            quality REAL NOT NULL,
+            availability REAL NOT NULL);";
 
             try 
             {
