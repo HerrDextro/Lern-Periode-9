@@ -177,7 +177,7 @@ Und endlich die `CreateInventory` Methode.
 - [x] Testtabelle für CreateInevntory
 
 ## Zusammenfassung 09.05.2025
-Heute habe ich die CreateInventory Methode umgeschrieben, da es nciht gut funktioniert hatte, und ich zur JSON verwendung ChatGPT genutzt hatte wodurch ich nicht gelernt habe wie man Werte in ein sehr veschachteltes JSON rauszieht. Dann habe ich die Testtabelle erstellt und das Skript dazu für SQLite optimiert. (ZB FLOAT zu REAL). Ich habe die neue INSERTS gemacht, damit die Testtabelle das Attribut Tag und das neue Availability hat. Auch habe ich die Tags verändert, damit sie mehr Sinn machen (sie werden sobald der ganze DB implementiert ist warscheinlich nochmals verändert). 
+Heute habe ich die `CreateInventory` Methode umgeschrieben, da es nciht gut funktioniert hatte, und ich zur JSON verwendung ChatGPT genutzt hatte wodurch ich nicht gelernt habe wie man Werte in ein sehr veschachteltes JSON rauszieht. Dann habe ich die Testtabelle erstellt und das Skript dazu für SQLite optimiert. (ZB FLOAT zu REAL). Ich habe die neue INSERTS gemacht, damit die Testtabelle das Attribut Tag und das neue Availability hat. Auch habe ich die Tags verändert, damit sie mehr Sinn machen (sie werden sobald der ganze DB implementiert ist warscheinlich nochmals verändert). 
 
 ## Arbeitspakete 16.05.2025
 - [ ] List mit alle Items in ein inventory werden von createinventory returned.
@@ -188,9 +188,9 @@ Heute habe ich die CreateInventory Methode umgeschrieben, da es nciht gut funkti
 <img src="DebuggingCSharp.png" width="480">
 
 ## Arbeitspakete 23.05.2025
-- [ ] Fix: beim erstellen einer Datenbank wir immer automatisch die Tabelle Player erstellt, das ist gut aber nicht wenn wir vie Debug.cs die statische DB erstellen möchten.
+- [ ] Fix: beim erstellen einer Datenbank wir immer automatisch die Tabelle Player erstellt, das ist gut aber nicht wenn wir vie `Debug.cs` die statische DB erstellen möchten.
 - [ ] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte)
-- [ ] Die ganze statische DB machen, aber nicht alle inserts (nur player und stat_wpn_gun zum testen)
+- [ ] `LifeNet.cs` und `Actor.cs` erstellen player und NPC object. Player mit player params und NPC mit die gleiche parameter, aber ein random loadout von `Createinventory`
 
 ## 4.4: Auspolieren & Abschluss
 - [ ] SQL script für DB Item abfragen (select from Tabellen stat_itm_x)
