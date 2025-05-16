@@ -180,11 +180,12 @@ Und endlich die `CreateInventory` Methode.
 Heute habe ich die `CreateInventory` Methode umgeschrieben, da es nciht gut funktioniert hatte, und ich zur JSON verwendung ChatGPT genutzt hatte wodurch ich nicht gelernt habe wie man Werte in ein sehr veschachteltes JSON rauszieht. Dann habe ich die Testtabelle erstellt und das Skript dazu für SQLite optimiert. (ZB FLOAT zu REAL). Ich habe die neue INSERTS gemacht, damit die Testtabelle das Attribut Tag und das neue Availability hat. Auch habe ich die Tags verändert, damit sie mehr Sinn machen (sie werden sobald der ganze DB implementiert ist warscheinlich nochmals verändert). 
 
 ## Arbeitspakete 16.05.2025
-- [ ] List mit alle Items in ein inventory werden von createinventory returned.
+- [ ] List mit alle Items in ein inventory werden von `SQLSelectQuery` returned.
 - [x] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte für testen)
 - [x] Die ganze statische DB machen, aber nicht alle inserts (nur player und stat_wpn_gun zum testen)
 
 ## Zusammenfassung 16.05.2025
+Heute habe ich weitergemacht an die `CreateInventory` Methode. Ich habe in `DBManager.cs` eine Mehthode gemacht, der für Select queries ist, die nicht in der Konsole etwas schreiben müssen sondern ein return machen. Ich habe auch in `ItemManager.cs` eine Methode gemacht, um der Query für das CreateInventory zu erstellen, da ein attribut wie `wpnTags` im JSON ein Array ist und deswegen nicht einfach so als variable im Query gesetzt werden kann. Danach habe ich ganz viel getestet und viel Debugging gemacht, damit alle komische Problemen weg sind. Da es sich hier oft um sehr abstrakte Objekten handlelt habe ich heute mein Debugging verbessert und die Tools dazu genutzt. Am meisten hat mit geholfen, breakpoints zu setzen und Variablen nachzuschauen. (Bild unten) Ich hatte (und habe immer noch ein bisschen) viel mühe Objecte zu verwendbare Variabeln umzuwandeln.
 <img src="DebuggingCSharp.png" width="480">
 
 ## Arbeitspakete 23.05.2025
@@ -199,3 +200,4 @@ Heute habe ich die `CreateInventory` Methode umgeschrieben, da es nciht gut funk
 
 # Fertiges Projekt
 To be continued
+````
