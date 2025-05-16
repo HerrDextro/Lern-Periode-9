@@ -184,6 +184,8 @@ Heute habe ich die CreateInventory Methode umgeschrieben, da es nciht gut funkti
 - [ ] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte)
 - [ ] Die ganze statische DB machen, aber nicht alle inserts (nur player und stat_wpn_gun zum testen)
 
+## Zusammenfassung 16.05.2025
+<img src="DebuggingCSharp.png" width="480">
 
 ## 4.4: Auspolieren & Abschluss
 - [ ] SQL script für DB Item abfragen (select from Tabellen stat_itm_x)
