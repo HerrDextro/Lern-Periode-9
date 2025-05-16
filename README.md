@@ -185,8 +185,9 @@ Heute habe ich die `CreateInventory` Methode umgeschrieben, da es nciht gut funk
 - [x] Die ganze statische DB machen, aber nicht alle inserts (nur player und stat_wpn_gun zum testen)
 
 ## Zusammenfassung 16.05.2025
-Heute habe ich weitergemacht an die `CreateInventory` Methode. Ich habe in `DBManager.cs` eine Mehthode gemacht, der für Select queries ist, die nicht in der Konsole etwas schreiben müssen sondern ein return machen. Ich habe auch in `ItemManager.cs` eine Methode gemacht, um der Query für das CreateInventory zu erstellen, da ein attribut wie `wpnTags` im JSON ein Array ist und deswegen nicht einfach so als variable im Query gesetzt werden kann. Danach habe ich ganz viel getestet und viel Debugging gemacht, damit alle komische Problemen weg sind. Da es sich hier oft um sehr abstrakte Objekten handlelt habe ich heute mein Debugging verbessert und die Tools dazu genutzt. Am meisten hat mit geholfen, breakpoints zu setzen und Variablen nachzuschauen. (Bild unten) Ich hatte (und habe immer noch ein bisschen) viel mühe Objecte zu verwendbare Variabeln umzuwandeln.
-<img src="DebuggingCSharp.png" width="480">
+Heute habe ich weitergemacht an die `CreateInventory` Methode. Ich habe in `DBManager.cs` eine Mehthode gemacht, der für Select queries ist, die nicht in der Konsole etwas schreiben müssen sondern ein return machen. Ich habe auch in `ItemManager.cs` eine Methode gemacht, um der Query für das CreateInventory zu erstellen, da ein attribut wie `wpnTags` im JSON ein Array ist und deswegen nicht einfach so als variable im Query gesetzt werden kann. Danach habe ich ganz viel getestet und viel Debugging gemacht, damit alle komische Problemen weg sind. Da es sich hier oft um sehr abstrakte Objekten handlelt habe ich heute mein Debugging verbessert und die Tools dazu genutzt. Am meisten hat mit geholfen, breakpoints zu setzen und Variablen nachzuschauen. (Bild unten) Ich hatte (und habe immer noch ein bisschen) viel mühe Objekte zu verwendbare Variabeln umzuwandeln.
+
+<img src="DebuggingCSharp.png" width="600">
 
 ## Arbeitspakete 23.05.2025
 - [ ] Fix: beim erstellen einer Datenbank wir immer automatisch die Tabelle Player erstellt, das ist gut aber nicht wenn wir vie `Debug.cs` die statische DB erstellen möchten.
