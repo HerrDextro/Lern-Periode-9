@@ -12,7 +12,7 @@
             "Melee": 0.1,
             "Smoke": 0.2
           },
-          "WeaponTags": [ "Light", "Reliable" ],
+          "WeaponTags": [ "Light", "Reliable" ], --make enum??
           "WeightLimit": 4.0,
           "SpawnCount": [ 1, 1 ],
           "ProbabilityWeighting": "distribution",

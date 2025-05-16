@@ -8,23 +8,24 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using AbstractGame.systems;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace AbstractGame.entities
 {
-    public class InventoryRulesRoot
+    public class InventoryRulesRoot //JSON
     {
         public Dictionary<string, Dictionary<string, InvItemRule>> InvItemRules { get; set; }
     }
 
-    public class InvItemRule
+    public class InvItemRule //JSON
     {
         public float[] QualityRange { get; set; }       
         public float[] AvailabilityRange { get; set; }  
         public ItemFilters ItemFilters { get; set; }
     }
 
-    public class ItemFilters
+    public class ItemFilters //JSON
     {
         public Dictionary<string, float> WeaponTypes { get; set; }
         public List<string> WeaponTags { get; set; }
@@ -38,7 +39,10 @@ namespace AbstractGame.entities
         public List<string> ItemTags { get; set; }
         public int ItemMax { get; set; }
     }
+    public class InvEntry //gameItem reference, bot the item yet (otherwise the list would have to support objects that could contain any if the SQL "objects"
+    {
 
+    }
 
     public class ItemManager
     {
@@ -60,7 +64,8 @@ namespace AbstractGame.entities
             return inventory;
         }*/
 
-        public Dictionary<string, object> CreateInventory(string rulesPath, string faction, string playStyle, int difficulty) //difficulty is int, right? check
+        //public static string wpnQuery; //for Debug.cs to access it. Belongs to createInventory
+        public static Dictionary<string, object> CreateInventory(string rulesPath, string faction, string playStyle, int difficulty) //difficulty is int, right? check
         {
             // get all the rules 
             InvItemRule rule = InvJSONdeserializer(rulesPath, faction, playStyle);
@@ -71,12 +76,12 @@ namespace AbstractGame.entities
             int minAvailability;
             Dictionary<string, object> itmFilter = new Dictionary<string, object>(); //critical, check this later
             string[] wpnTags;
-            float weightLimit;
+            float maxWeight;
             int[] maxMinWpnSpawn;
             string probabilityWeighting; //NOTE, this is for the following: "distribution": select randomly based on the type weights. "equal": ignore weights, pick anything."fixed": always pick a fixed setup.
             string[] gearTags;
             int maxGearItms;
-            string itmTags;
+            string[] itmTags;
             int maxItms;
 
             
@@ -89,13 +94,13 @@ namespace AbstractGame.entities
             {
                 //dsaid ignored dictionary
             }
-            wpnTags = rule.ItemFilters.WeaponTags.ToArray(); //works? somehow.
-            weightLimit = rule.ItemFilters.WeightLimit;
+            wpnTags = rule.ItemFilters.WeaponTags.ToArray(); //works? somehow. Apparfently it doesnt. The SQL select gives exception because System.String[] is interted into the query
+            maxWeight = rule.ItemFilters.WeightLimit;
             maxMinWpnSpawn= rule.ItemFilters.SpawnCount.ToArray();
             probabilityWeighting = rule.ItemFilters.ProbabilityWeighting.ToString(); //cannot convert to char issue. //WATCH OUT: IF THERE ARE MORE THAN 1 Entries this BREAKS
             gearTags = rule.ItemFilters.GearTags.ToArray();
             maxGearItms = Convert.ToInt32(rule.ItemFilters.GearMaxItems);
-            itmTags = rule.ItemFilters.ItemTags.ToString(); //WATCH OUT: IF THERE ARE MORE THAN 1 Entries this BREAKS
+            itmTags = rule.ItemFilters.ItemTags.ToArray(); //WATCH OUT: IF THERE ARE MORE THAN 1 Entries this BREAKS
             maxItms = Convert.ToInt32(rule.ItemFilters.ItemMax);
 
 
@@ -124,12 +129,37 @@ namespace AbstractGame.entities
 
 
 
-            // get all items (+ insert rest of filters into query)
+            // get all items (+ insert rest of filters into query) //only test_wpn_table for now!!!
+            //better make this a function
+            //string  wpnQuery = $"SELECT * FROM test_wpn_gun \r\nWHERE quality BETWEEN {minQuality} AND {maxQuality}\r\n  AND availability BETWEEN {minAvailability} AND {maxAvailability}\r\n  AND weight <= {maxWeight}\r\n  AND wpnTag LIKE {wpnTags};\r\n";
+            string wpnQuery = BuildQuery(wpnTags, minQuality, maxQuality, minAvailability, maxAvailability, maxWeight);
+            //DBManager.SQLSelectQuery(wpnQuery);
+            Console.WriteLine(wpnTags[0] + "," + wpnTags[1]);
+
+
+            //DEBUG CHECKING LIST OF RETUNRED ITEMS:
+            var items = DBManager.SQLSelectQuery("SELECT * FROM test_wpn_gun"); //normally uses wpnQuery, but for testing uses select 
+            if (items.Count > 0)
+            {
+                foreach (var row in items)
+                {
+                    Console.WriteLine("Row:");
+                    foreach (var pair in row)
+                    {
+                        Console.WriteLine($"  {pair.Key}: {pair.Value}"); 
+                    }
+                }
+            }
+            else 
+            {
+                Console.WriteLine("No items found");
+            }
+
+          
 
 
 
 
-            
 
 
 
@@ -144,12 +174,39 @@ namespace AbstractGame.entities
             var root = JsonConvert.DeserializeObject<InventoryRulesRoot>(json); //newtonsoft, check older deserializer methods (might wanna update them)
 
             var rule = root.InvItemRules[faction][playStyle];
-            Console.WriteLine(rule); //debug, onyl returns object type tho
+            Console.WriteLine("InvJSONdeserializer: (Debug)" + rule); //debug, onyl returns object type tho
             
             PrintAllSpawnRules(root);//
             return rule;
         }
+        public static string BuildQuery(string[] tags, int minQuality, int maxQuality, int minAvail, int maxAvail, double maxWeight)
+        {
+            var likeClauses = tags.Select(tag => $"wpnTag LIKE '%{tag}%'");
+            var whereTags = string.Join(" OR ", likeClauses);
 
+            var query = $@"
+            SELECT * FROM test_wpn_gun 
+             WHERE quality BETWEEN {minQuality} AND {maxQuality}
+            AND availability BETWEEN {minAvail} AND {maxAvail}
+            AND weight <= {maxWeight}
+            AND ({whereTags});
+    ";
+
+            return query;
+        }
+
+
+
+        //this below is either for getting the final items into an inventory list or it was for doing the actual select with a return
+        public List<InvEntry> GetItems(float minQuality, float maxQuality, float minAvailability, float maxAvailability, float maxWeight, string requiredTag) //no idea why this is here and what its for, so delete if not touched until next week.
+        {
+            
+
+
+            List<InvEntry> inventory = new List<InvEntry>(); //to solve return error
+
+            return inventory;
+        }
 
         public static void PrintAllSpawnRules(InventoryRulesRoot root) //ChatGPT for debug
         {
@@ -184,7 +241,5 @@ namespace AbstractGame.entities
                 }
             }
         }
-
-
     }
 }

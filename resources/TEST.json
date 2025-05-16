@@ -12,7 +12,7 @@
                         "Melee": 0.1,
                         "Smoke": 0.2
                     },
-                    "WeaponTags": [ "light-reliable", "medium-reliable" ],
+                    "WeaponTags": [ "light-reliable", "medium-reliable" ], 
                     "WeightLimit": 4.0,
                     "SpawnCount": [ 1, 1 ],
                     "ProbabilityWeighting": "distribution",

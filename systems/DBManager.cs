@@ -130,7 +130,7 @@ namespace AbstractGame.systems
                 Console.WriteLine("DBInsert Lines affected:" + command.ExecuteNonQuery());
             }
         }
-        public static void QueryDB(string query)
+        public static void SQLInsertQuery(string query) //only creates and inserts/updates, no selects or anything with a return
         {
             using (var connection = new SQLiteConnection(connectionString)) //only declare connection here not in later methods. (remove "var")
             {
@@ -140,6 +140,104 @@ namespace AbstractGame.systems
                     Console.WriteLine("QueryDB Lines affected:" + command.ExecuteNonQuery());
                 }
             }
+        }
+        public static List<Dictionary<string, object>> SQLSelectQuery(string query)
+        {
+            Console.WriteLine("SQLSelectQuery CALLED");
+
+            var results = new List<Dictionary<string, object>>();
+
+            try
+            {
+                using (var connection = new SQLiteConnection(DBManager.connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                string columnName = reader.GetName(i);
+                                object value = reader.GetValue(i);
+                                row[columnName] = value;
+                            }
+
+                            results.Add(row);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Database query failed: {ex.Message}");
+                // Optionally rethrow or return empty list
+                throw;
+            }
+
+            return results;
+        }
+        /*public static void SelectAll(string tableName) //debug
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(DBManager.connectionString))
+                {
+                    connection.Open();
+                    string selectAllQuery = $@"SELECT * FROM {tableName}";
+
+                    using (var command = new SQLiteCommand(selectAllQuery, connection))
+                    using (var reader = command.ExecuteReader()) // Execute the query
+                    {
+                        while (reader.Read()) // Loop through all rows
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++) // Loop through all columns
+                            {
+                                Console.Write($"{reader.GetName(i)}: {reader[i]} | \n"); // Print column name & value
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write($"Debug selectAll: {ex.Message}");
+            }
+
+        }*/
+        public static void SQLDebugQuery(string Query) //debug
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(DBManager.connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand(Query, connection))
+                    using (var reader = command.ExecuteReader()) // Execute the query
+                    {
+                        while (reader.Read()) // Loop through all rows
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++) // Loop through all columns
+                            {
+                                Console.Write($"{reader.GetName(i)}: {reader[i]} | \n"); // Print column name & value
+                            }
+
+                        }
+                        Console.WriteLine("QueryDB Lines affected:" + command.ExecuteNonQuery());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write($"SQL Method: {ex.Message}");
+            }
+
         }
     }
 }
