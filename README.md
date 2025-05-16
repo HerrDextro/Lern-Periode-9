@@ -180,7 +180,7 @@ Und endlich die `CreateInventory` Methode.
 Heute habe ich die `CreateInventory` Methode umgeschrieben, da es nciht gut funktioniert hatte, und ich zur JSON verwendung ChatGPT genutzt hatte wodurch ich nicht gelernt habe wie man Werte in ein sehr veschachteltes JSON rauszieht. Dann habe ich die Testtabelle erstellt und das Skript dazu für SQLite optimiert. (ZB FLOAT zu REAL). Ich habe die neue INSERTS gemacht, damit die Testtabelle das Attribut Tag und das neue Availability hat. Auch habe ich die Tags verändert, damit sie mehr Sinn machen (sie werden sobald der ganze DB implementiert ist warscheinlich nochmals verändert). 
 
 ## Arbeitspakete 16.05.2025
-- [ ] List mit alle Items in ein inventory werden von `SQLSelectQuery` returned.
+- [x] List mit alle Items in ein inventory werden von `SQLSelectQuery` returned.
 - [x] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte für testen)
 - [x] Die ganze statische DB machen, aber nicht alle inserts (nur player und stat_wpn_gun zum testen)
 
