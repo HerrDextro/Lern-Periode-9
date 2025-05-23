@@ -58,7 +58,7 @@ namespace AbstractGame.debug
 
                     //DBManager.QueryDB("INSERT INTO test_wpn_gun \r\n(wpnName, wpnTag, ammoType, magSize, rpm, durability, compatibility, weight, quality, availability) \r\nVALUES \r\n('Tokarev TT-33', 'light-reliable', '7.62x25mm Tokarev', 8, 600, 75, 'None', 0.85, 3, 9),\r\n('SKS', 'medium-reliable', '7.62x39mm', 10, 400, 100, 'None', 3.8, 3, 9),\r\n('AK-47', 'medium-reliable', '7.62x39mm', 30, 600, 100, 'None', 3.3, 4, 10),\r\n('HK G3', 'heavy-powerful', '7.62x51mm NATO', 20, 600, 100, 'None', 4.1, 6, 5),\r\n('SCAR H', 'heavy-powerful', '7.62x51mm NATO', 20, 650, 95, 'None', 3.9, 8, 2);\r\n"); //works
                     ItemManager.CreateInventory("C:\\Users\\Neo\\source\\repos\\AbstractGame\\AbstractGame\\resources\\TEST.json", "Factionless", "Light", 1);
-                    
+                    Console.ReadLine();
                     //DBManager.QueryDB(ItemManager.wpnQuery);
                     break;
             }

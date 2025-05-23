@@ -8,6 +8,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using AbstractGame.systems;
+using AbstractGame.world;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
@@ -155,7 +156,27 @@ namespace AbstractGame.entities
                 Console.WriteLine("No items found");
             }
 
-          
+            //NOW CREATE LOADOUT BASED ON RETURNED ITEMS
+            //highest priority: weapons
+            //then gear (clothing, backpack)
+            //then food and water
+            //then items (comms, tools)
+            //then medical
+            var pistols = new List<Item>();
+            var rifles = new List<Item>();
+            var melee = new List<Item>();
+            var smoke = new List<Item>();
+            // Gear, Food, Medical, Tools, etc.
+
+            /*foreach (var item in items) commented out for quick debug  but get back in later
+            {
+                if (item.Type == "Pistol") pistols.Add(item);
+                else if (item.Type == "SemiAuto") rifles.Add(item);
+                else if (item.Type == "Melee") melee.Add(item);
+                // Extend this for gear/medical etc.
+            }*/
+
+
 
 
 

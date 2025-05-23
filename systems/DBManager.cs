@@ -67,7 +67,7 @@ namespace AbstractGame.systems
             Health INTEGER DEFAULT 100,
             Difficulty INT NOT NULL);
 
-            CREATE TABLE test_wpn_gun (
+            CREATE TABLE test_wpn_gun ( 
             stat_wpn_gun_id INTEGER PRIMARY KEY AUTOINCREMENT,
             wpnName TEXT NOT NULL,
             wpnTag TEXT NOT NULL,
@@ -79,7 +79,7 @@ namespace AbstractGame.systems
             compatibility TEXT,
             weight REAL,
             quality REAL NOT NULL,
-            availability REAL NOT NULL);";
+            availability REAL NOT NULL);"; //missing Type?? Lets see
 
             try 
             {
