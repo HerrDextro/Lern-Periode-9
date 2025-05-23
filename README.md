@@ -190,9 +190,12 @@ Heute habe ich weitergemacht an die `CreateInventory` Methode. Ich habe in `DBMa
 <img src="DebuggingCSharp.png" width="600">
 
 ## Arbeitspakete 23.05.2025
-- [ ] Fix: beim erstellen einer Datenbank wir immer automatisch die Tabelle Player erstellt, das ist gut aber nicht wenn wir vie `Debug.cs` die statische DB erstellen möchten.
-- [ ] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte)
+- [x] Fix: beim erstellen einer Datenbank wir immer automatisch die Tabelle Player erstellt, das ist gut aber nicht wenn wir vie `Debug.cs` die statische DB erstellen möchten.
+- [x] MS SQL zu SQLite kompatibel machen (alle Tabelle-erstellungs Skripte)
 - [ ] `LifeNet.cs` und `Actor.cs` erstellen player und NPC object. Player mit player params und NPC mit die gleiche parameter, aber ein random loadout von `Createinventory`
+
+## Zusammenfassung 23.05.2025
+Heute habe ich ein bisschen ein redesign gemacht und Item classed (main und sub classes) erstellt, um die Items aus dem Datenbank direkt als Objekte zu haben. Ich habe auch die Logic in `CreateInventory` dafür geändert. Dann habe ich es so gemacht, dass `LifeNet.cs` beim initialisieren ein paar Actors erstellt, inklusive der Player mit seine Stats. Das wird dann (hauptsächlich zum Debuggen) in der Console geschrieben.
 
 ## 4.4: Auspolieren & Abschluss
 - [ ] SQL script für DB Item abfragen (select from Tabellen stat_itm_x)
