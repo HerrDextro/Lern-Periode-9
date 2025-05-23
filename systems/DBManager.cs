@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using AbstractGame.world;
 
 namespace AbstractGame.systems
 {
@@ -71,6 +72,7 @@ namespace AbstractGame.systems
             stat_wpn_gun_id INTEGER PRIMARY KEY AUTOINCREMENT,
             wpnName TEXT NOT NULL,
             wpnTag TEXT NOT NULL,
+            wpnType TEXT NOT NULL,
             ammoType TEXT,
             magSize INTEGER,
             rpm INTEGER,
@@ -181,6 +183,43 @@ namespace AbstractGame.systems
 
             return results;
         }
+
+        public static List<WpnGun> GetWeapons(string query) //future proof, see what about that //update types to match var item (to match the SQL atributes)
+        {
+            var results = new List<WpnGun>();
+
+            using (var connection = new SQLiteConnection(DBManager.connectionString))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var weapon = new WpnGun
+                        {
+                            Name = reader["Name"].ToString(),
+                            Type = reader["Type"].ToString(),
+                            AmmoType = reader["AmmoType"].ToString(),
+                            MagSize = Convert.ToInt32(reader["MagSize"]),
+                            RPM = Convert.ToInt32(reader["RPM"]),
+                            Durability = Convert.ToInt32(reader["Durability"]),
+                            DurabilityMod = Convert.ToInt32(reader["DurabilityMod"]),
+                            Compatibility = reader["Compatibility"].ToString(),
+                            Weight = Convert.ToSingle(reader["Weight"]),
+                            Quality = Convert.ToInt32(reader["Quality"]),
+                            Availability = Convert.ToInt32(reader["Availability"]),
+                            Tags = reader["Tag"].ToString().Split(',').ToList()
+                        };
+
+                        results.Add(weapon);
+                    }
+                }
+            }
+
+            return results;
+        }
+
         /*public static void SelectAll(string tableName) //debug
         {
             try

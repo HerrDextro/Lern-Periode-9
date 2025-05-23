@@ -168,25 +168,43 @@ namespace AbstractGame.entities
             var smoke = new List<Item>();
             // Gear, Food, Medical, Tools, etc.
 
-            /*foreach (var item in items) commented out for quick debug  but get back in later
+            List<WpnGun> weapons = items.Select(ConvertRowToWeapon).ToList();
+
+            foreach (var weapon in weapons)
             {
-                if (item.Type == "Pistol") pistols.Add(item);
-                else if (item.Type == "SemiAuto") rifles.Add(item);
-                else if (item.Type == "Melee") melee.Add(item);
-                // Extend this for gear/medical etc.
-            }*/
+                if (weapon.Type == "Pistol") pistols.Add(weapon);
+                else if (weapon.Type == "SemiAuto") rifles.Add(weapon);
+                else if (weapon.Type == "Melee") melee.Add(weapon);
+            }
 
 
-
-
-
-
-
-
+            //Only wpns now for testing, expand for medical and gear
 
 
             return new Dictionary<string, object>(); //to avoid constant "not returning error"
         }
+        public static WpnGun ConvertRowToWeapon(Dictionary<string, object> row)
+        {
+            return new WpnGun
+            {
+                Id = Convert.ToInt32(row["stat_wpn_gun_id"]),
+                Name = row["wpnName"].ToString(),
+                Tag = row["wpnTag"].ToString(),
+                Type = row["wpnType"].ToString(), // assuming this field exists
+                AmmoType = row["ammoType"].ToString(),
+                MagSize = Convert.ToInt32(row["magSize"]),
+                RPM = Convert.ToInt32(row["rpm"]),
+                Durability = string.IsNullOrWhiteSpace(row["durability"].ToString()) ? 0 : Convert.ToInt32(row["durability"]),
+                DurabilityMod = string.IsNullOrWhiteSpace(row["durabilityMod"].ToString()) ? 0 : Convert.ToInt32(row["durabilityMod"]),
+                Compatibility = row["compatibility"].ToString(),
+                Weight = Convert.ToSingle(row["weight"]),
+                Quality = Convert.ToInt32(row["quality"]),
+                Availability = Convert.ToInt32(row["availability"]),
+                Tags = row["wpnTag"].ToString().Split(',').ToList()
+            };
+        }
+
+
 
         public static InvItemRule InvJSONdeserializer(string path, string faction, string playStyle)
         {
